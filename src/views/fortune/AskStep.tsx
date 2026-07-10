@@ -29,7 +29,7 @@ export const AskStep = ({ onProceed }: AskStepProps) => {
         />
       </div>
       <div className="mt-3  text-[9px] uppercase tracking-[2px] text-[#6f6034]">
-        Fortuna · statue
+        Goddess Fortuna
       </div>
 
       <input

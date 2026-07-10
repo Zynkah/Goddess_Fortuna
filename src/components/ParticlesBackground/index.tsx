@@ -24,13 +24,13 @@ export const ParticlesBackground = memo(() => {
       particles: {
         color: {
           value: [
-            "#7d90ed",
-            "#a27ded",
-            "#90ed7d",
-            "#f05d80",
-            "#7dedda",
-            "#7dc8ed",
-            "#2ecdc9",
+            "#c9a227",
+            "#e6c34d",
+            "#e8d5a0",
+            "#cbb884",
+            "#8a7a52",
+            "#8f7c48",
+            " #6f6034",
           ],
         },
         collisions: {
