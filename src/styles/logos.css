@@ -1,0 +1,23 @@
+.header-logo {
+  width: 60px;
+}
+
+.logo-container {
+  position: relative;
+  width: 120px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-svg {
+  position: absolute;
+  width: 50%;
+}
+
+.logo-text {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+}

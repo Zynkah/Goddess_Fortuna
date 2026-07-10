@@ -1,0 +1,31 @@
+.table-section {
+  display: flex;
+  gap: 2rem;
+}
+
+.table-contents {
+  width: 100%;
+}
+
+.table-contents th {
+  text-align: left;
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
+}
+
+.table-contents td {
+  padding-inline: 1rem;
+  padding-top: 1rem;
+}
+
+.table-headers {
+  background-color: var(--red);
+  color: var(--background-color);
+  font-size: 1.3rem;
+}
+
+.table-button {
+  padding: 1rem;
+  display: flex;
+  justify-content: flex-end;
+}

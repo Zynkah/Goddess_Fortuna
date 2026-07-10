@@ -1,0 +1,75 @@
+.wallet-adapter-button-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: transparent;
+  border: 1px solid var(--fortuna-gold);
+  border-radius: var(--bd-radius-sm);
+  box-shadow: var(--background-color) 4px 4px 0 0, var(--fortuna-gold) 4px 4px 0 1px,
+    inset 0 0 6px var(--fortuna-gold);
+
+  font-weight: 400;
+  line-height: 18px;
+  margin: 0 3px 8px 0;
+  padding: 10px 20px;
+
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  color: white;
+   font-family: "PPSupplyMono", monospace;
+
+  min-width: 180px;
+  overflow: visible;
+}
+.wallet-adapter-button {
+  position: relative;
+}
+
+.wallet-adapter-button:not([disabled]):hover,
+.wallet-adapter-button:not([disabled]):focus-visible {
+  background-color: transparent !important;
+  box-shadow: var(--background-color) 4px 4px 0 0, var(--purple) 4px 4px 0 1px,
+    5px 0px 5px 0px var(--purple), inset 0 0 5px var(--purple);
+}
+
+.wallet-adapter-button:not([disabled]):focus-visible {
+  outline: 2px solid var(--purple);
+  outline-offset: 2px;
+}
+
+.wallet-adapter-dropdown-list {
+  background-color: black;
+  border-radius: var(--bd-radius-sm);
+   font-family: "PPSupplyMono", monospace;
+  position: absolute;
+  top: 40px;
+  left: 24px;
+  width: fit-content;
+}
+.wallet-adapter-dropdown-list-item {
+  border: 1px solid transparent;
+  text-transform: uppercase;
+  transition: all 0.5s ease;
+}
+
+.wallet-adapter-dropdown-list-item:hover {
+  background-color: transparent !important;
+  border: 1px solid var(--purple);
+  border-radius: var(--bd-radius);
+  box-shadow: inset 0 0 6px var(--purple);
+}
+
+.settings-dropdown-btn:hover {
+  background-color: transparent !important;
+  border: 1px solid var(--red);
+  box-shadow: inset 0 0 6px var(--red);
+}
+
+.select:hover {
+  border: 1px solid var(--red) !important;
+}

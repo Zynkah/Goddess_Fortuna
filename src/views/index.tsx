@@ -1,0 +1,1 @@
+export { FortuneView } from "./fortune";

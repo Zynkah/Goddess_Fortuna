@@ -1,0 +1,153 @@
+:root {
+  --grey: #888888;
+  --purpleBlue: #7d90ed;
+  --purpleBlue-faded: #7d90ed10;
+  --purple: #a27ded;
+  --purple-faded: #a27ded10;
+  --green: #90ed7d;
+  --red: #f05d80;
+  --red-faded: #f05d8010;
+  --lightBlue: #7dedda;
+  --blue: #7dc8ed;
+  --teal: #2ecdc9;
+  --teal-faded: #2ecdc910;
+  --salmon: #ff5e4f;
+
+  --background-color: black;
+
+  --bd-radius-sm: 2px;
+  --bd-radius: 4px;
+
+  --bg-black: #07000c;
+  --pink: #ff6ec7;
+  --cyan: #6dfcff;
+  --border-glow: rgba(185, 140, 255, 0.6);
+
+  --fortuna-bg: #070502;
+  --fortuna-bg-raised: #0d0a06;
+  --fortuna-gold: #c9a227;
+  --fortuna-gold-bright: #e6c34d;
+  --fortuna-gold-light: #e8d5a0;
+  --fortuna-gold-soft: #cbb884;
+  --fortuna-gold-dim: #8a7a52;
+  --fortuna-gold-dimmer: #8f7c48;
+  --fortuna-gold-faint: #6f6034;
+  --fortuna-gold-line: rgba(201, 162, 39, 0.28);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+* {
+  margin: 0;
+}
+
+button {
+  color: inherit;
+  cursor: pointer;
+   font-family: "PPSupplyMono", monospace;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+img,
+svg {
+  display: block;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+html {
+   font-family: "PPSupplyMono", monospace;
+  background-color: var(--background-color);
+  color: white;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+/* Layout classes */
+
+.main {
+  margin-block: 2rem;
+  margin-inline: auto;
+}
+
+.header {
+  font-size: clamp(28px, 5vw, 64px);
+  color: #fff;
+  letter-spacing: 4px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.sub-header {
+  font-size: 1.3rem;
+}
+
+.teal-text {
+  color: var(--teal);
+}
+.teal-text:hover {
+  text-shadow: 0px 2px 2px #2ecdc9;
+}
+
+.footer,
+.navbar {
+  background-color: black;
+  display: flex;
+  position: sticky;
+  z-index: 100;
+  box-shadow:
+    0 6px 20px rgba(180, 120, 255, 0.25),
+    inset 0 -2px 8px rgba(255, 255, 255, 0.05);
+  letter-spacing: -0.025em;
+  font-weight: 400;
+}
+
+.footer {
+  bottom: 0;
+  overflow-y: hidden;
+  border-top: 1px solid var(--fortuna-gold-line);
+}
+
+.footer-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px;
+  padding-inline: 2%;
+}
+
+.navbar {
+  top: 0;
+  border-bottom: 2px solid var(--fortuna-gold);
+}
+
+.navbar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.04) 0px,
+    rgba(255, 255, 255, 0.04) 1px,
+    transparent 2px,
+    transparent 4px
+  );
+  pointer-events: none;
+  opacity: 0.25;
+}

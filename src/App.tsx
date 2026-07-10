@@ -1,0 +1,47 @@
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
+import { ContextProvider } from "./contexts/ContextProvider";
+import { AppBar } from "./components/AppBar";
+import { ContentContainer } from "./components/AppBar/ContentContainer";
+import { Footer } from "./components/Footer";
+import NotificationList from "./components/Notification";
+
+// Import views
+import { FortuneView } from "./views/fortune";
+import { ParticlesBackground } from "./components/ParticlesBackground";
+import { FAQPage } from "./views/faqPage";
+import { ContactSupportView } from "./views/contactSupport";
+
+function App() {
+  return (
+    <>
+      <Helmet>
+        <title>Goddess Fortuna</title>
+        <meta
+          name="description"
+          content="Ask the Goddess a question and let her flip your fate"
+        />
+      </Helmet>
+
+      <ContextProvider>
+        <div className="flex flex-col page">
+          <ParticlesBackground />
+          <NotificationList />
+          <AppBar />
+          <ContentContainer>
+            <Routes>
+              <Route path="/" element={<FortuneView />} />
+              <Route path="/fortune" element={<FortuneView />} />
+              <Route path="/faqPage" element={<FAQPage />} />
+              <Route path="/contactSupport" element={<ContactSupportView />} />
+            </Routes>
+          </ContentContainer>
+          <Footer />
+        </div>
+      </ContextProvider>
+    </>
+  );
+}
+
+export default App;

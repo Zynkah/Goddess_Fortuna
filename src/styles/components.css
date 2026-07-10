@@ -1,0 +1,198 @@
+/* EV-related classes */
+
+.ev-section,
+.ev-section-threshold {
+  align-content: center;
+  backdrop-filter: blur(2px);
+}
+
+.ev-section-threshold {
+  border: 1px solid var(--purpleBlue);
+  color: var(--purpleBlue);
+}
+
+.ev-section {
+  border: 1px solid var(--purpleBlue);
+  border-radius: var(--bd-radius);
+  color: var(--fortuna-gold);
+}
+
+.jackpot-title {
+  font-size: 64px;
+  line-height: 64px;
+  color: var(--red);
+}
+
+.jackpot-chance-title {
+  border: 1px solid var(--purple);
+  border-radius: 24px;
+  color: var(--purple);
+  padding: 4px 12px;
+  box-shadow: 0 0 8px var(--purple)
+}
+
+.ev-header-purple,
+.ev-header-red,
+.ev-header-teal,
+.ev-header-purple-blue {
+  font-size: 1.5rem;
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
+}
+
+.ev-header-purple {
+  background-color: var(--purple-faded);
+  color: var(--purple);
+  border-bottom: 1px solid var(--purple);
+  box-shadow: inset 0 0 8px var(--purple);
+}
+
+.ev-header-purple-blue {
+  background-color: var(--purpleBlue-faded);
+  color: var(--purpleBlue);
+  border-bottom: 1px solid var(--purpleBlue);
+  box-shadow: inset 0 0 8px var(--purpleBlue);
+}
+
+.ev-header-red {
+  background-color: var(--red-faded);
+  color: var(--red);
+  border-bottom: 1px solid var(--red);
+  box-shadow: inset 0 0 8px var(--red);
+}
+
+.ev-header-teal {
+  background-color: var(--teal-faded);
+  color: var(--teal);
+  border-bottom: 1px solid var(--teal);
+  box-shadow: inset 0 0 8px var(--teal);
+}
+
+.ev-label {
+  font-size: 1rem;
+  color: var(--purple);
+}
+
+.ev-section--mode,
+.ev-section--examples {
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.ev-inputs {
+  display: flex;
+  gap: 1rem;
+  margin: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.ev-section-threshold,
+.ev-section {
+  flex: 1;
+  padding: 1rem;
+}
+
+.bias {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+/* JSON section class */
+
+.json-section {
+  border: 1px solid var(--green);
+  padding-inline: 1rem;
+  display: flex;
+  gap: 2rem;
+  padding-block: 1.5rem;
+  color: var(--green);
+  font-size: 1rem;
+  margin-block: 1rem;
+  backdrop-filter: blur(2px);
+  border-radius: var(--bd-radius);
+  box-shadow: inset 0 0 6px var(--green);
+}
+
+/* Coin flip switch styles */
+
+.coin-switch {
+  position: relative;
+  display: inline-block;
+}
+
+.coin-switch-input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.coin-switch-label {
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+  border: 2px solid var(--purpleBlue);
+  background-color: black;
+  border-radius: var(--bd-radius-sm);
+  position: relative;
+  cursor: pointer;
+  transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.coin-switch-slider {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 22px;
+  height: 22px;
+  background-color: var(--purpleBlue);
+  border-radius: var(--bd-radius-sm);
+  transition: transform 0.3s;
+}
+
+.coin-switch-input:checked + .coin-switch-label .coin-switch-slider {
+  transform: translateX(30px);
+}
+
+/* Coin option selection styles */
+
+.coin-option {
+  font-size: 1rem;
+  color: var(--purpleBlue);
+  transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 60px;
+}
+
+.coin-option--selected {
+  color: var(--purple);
+  font-size: 1.125rem;
+  font-weight: 600;
+  transform: scale(1.1);
+}
+
+/* Play count section styles */
+
+.play-count-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: 300px;
+  margin: 1rem auto;
+  padding: 1rem;
+}
+
+.particles-wrapper {
+  position: absolute;
+
+  canvas {
+    height: calc(100vh - 64px);
+    width: 100%;
+    bottom: 0;
+  }
+}

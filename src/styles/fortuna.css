@@ -1,0 +1,90 @@
+.fortuna-stage {
+  background: radial-gradient(120% 80% at 50% -10%, #14110a 0%, #070502 58%);
+}
+
+.fortuna-card {
+  background: linear-gradient(180deg, var(--fortuna-bg-raised), var(--fortuna-bg));
+  border: 1px solid var(--fortuna-gold-line);
+  position: relative;
+}
+
+.fortuna-card::before {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border: 1px solid rgba(201, 162, 39, 0.12);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.fortuna-question-input {
+  transition: border-color 0.2s ease;
+}
+
+.fortuna-question-input:focus {
+  outline: none;
+  border-color: rgba(201, 162, 39, 0.7) !important;
+}
+
+.fortuna-coin {
+  animation: fortunaRevealOrb 0.5s ease both, fortunaOrbPulse 3.4s ease-in-out infinite 0.5s;
+}
+
+.fortuna-coin--flipping {
+  animation: fortunaCoinLand 1.5s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+}
+
+@keyframes fortunaRevealOrb {
+  from {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fortunaRevealUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fortunaOrbPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 44px rgba(230, 195, 77, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 72px rgba(230, 195, 77, 0.65);
+  }
+}
+
+@keyframes fortunaFloaty {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes fortunaCoinLand {
+  0% {
+    transform: rotateX(0) scale(1.1);
+  }
+  100% {
+    transform: rotateX(1980deg) scale(1);
+  }
+}
+
+.fortuna-reveal-up {
+  animation: fortunaRevealUp 0.6s ease both;
+}

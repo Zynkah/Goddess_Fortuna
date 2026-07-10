@@ -1,0 +1,50 @@
+@media (max-width: 1300px) {
+  .header {
+    font-size: 3.5rem;
+    padding-block: 3rem;
+  }
+
+  .sub-container-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    font-size: 2.5rem;
+    padding-block: 2rem;
+    margin: auto;
+  }
+
+  .dropdown-header {
+    margin: 0;
+  }
+
+  .sub-container-grid-top {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .table-contents th,
+  .table-contents td {
+    font-size: 1.3rem;
+    padding-inline: 0.5rem;
+  }
+
+  .ev-section,
+  .ev-section-threshold {
+    margin-block: 0.5rem;
+  }
+  .ev-section--mode {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ev-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}

@@ -1,0 +1,31 @@
+.ev-alert {
+  background-color: black;
+  padding: 12px;
+  margin-bottom: 16px;
+  border-radius: var(--bd-radius);
+}
+
+.ev-info {
+  border: 1px solid var(--purpleBlue);
+  color: var(--purpleBlue);
+  box-shadow: 0px 1px 4px var(--purpleBlue);
+}
+
+.ev-warning {
+  border: 1px solid var(--salmon);
+  color: var(--salmon);
+  box-shadow: 0px 1px 4px var(--salmon);
+}
+
+.ev-error {
+  border: 1px solid var(--red);
+  color: var(--red);
+  box-shadow: 0px 1px 4px var(--red);
+
+}
+
+.ev-success {
+  border: 1px solid var(--green);
+  color: var(--green);
+  box-shadow: 0px 1px 4px var(--green);
+}

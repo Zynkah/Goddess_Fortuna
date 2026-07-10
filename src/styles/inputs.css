@@ -1,0 +1,74 @@
+.input--primary,
+.input--full,
+.input--sm,
+.input--bet {
+  background-color: var(--background-color);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  margin: 0 5px 10px 0;
+  overflow: visible;
+  padding: 12px 16px;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  transition: box-shadow 0.3s ease-in-out;
+  border-radius: var(--bd-radius-sm);
+}
+
+.input--secondary {
+  color: var(--purple);
+  border: 1px solid var(--purple) !important;
+  border-radius: var(--bd-radius-sm);
+}
+
+.input--full {
+  width: 100%;
+  color: var(--red);
+  border: 1px solid var(--red);
+}
+
+.input--bet {
+  height: 40px;
+  border: 1px solid var(--red);
+  box-shadow: var(--background-color) 4px 4px 0 0, var(--red) 4px 4px 0 1px,
+    inset 0 0 8px var(--red);
+  line-height: 18px;
+  width: 50%;
+  font-size: 24px;
+}
+
+.input--sm {
+  height: 40px;
+  color: var(--purpleBlue);
+  border: 1px solid var(--purpleBlue);
+  background-color: var(--background-color);
+  width: 15%;
+  margin: 0 16px 0 16px;
+  min-width: 140px;
+  position: relative;
+  border-radius: var(--bd-radius-sm);
+}
+
+.input--sm:focus,
+.input--full:focus,
+.input--secondary:focus {
+  outline: none;
+}
+
+.input--sm:focus {
+  color: var(--purpleBlue);
+  border-color: var(--purpleBlue);
+  box-shadow: 0 0 10px 1px var(--purpleBlue);
+}
+.input--full:focus {
+  color: var(--red);
+  border-color: var(--red);
+  box-shadow: 0 0 10px 1px var(--red);
+}
+
+.input--secondary:focus {
+  color: var(--purple);
+  border-color: var(--purple);
+  box-shadow: 0 0 10px 1px var(--purple);
+}

@@ -1,0 +1,169 @@
+/* Page transition animation */
+.page {
+  animation: fadeSlide 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Optional: smooth background change */
+body {
+  transition: background-color 0.4s ease;
+}
+
+.fade-in-left {
+  animation: leftFade 0.5s ease-in-out;
+}
+
+.fade-in-right {
+  animation: rightFade 0.5s ease-in-out;
+}
+
+.stretch-up {
+  animation: stretchUp 0.5s ease-in-out;
+}
+.table-data {
+  animation: fadeIn 0.6s ease-in;
+}
+
+.header {
+  display: inline-flex;
+}
+
+.letter {
+  display: inline-block;
+  animation: rotateSpin 1s ease-in-out forwards;
+  opacity: 0;
+}
+
+.letter:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.letter:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.letter:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.letter:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+.letter:nth-child(5) {
+  animation-delay: 0.4s;
+}
+
+.letter:nth-child(6) {
+  animation-delay: 0.5s;
+}
+
+.btn--special-glow {
+  animation: tilt 10s infinite linear;
+}
+
+@keyframes rotateSpin {
+  0% {
+    transform: rotateY(0deg);
+    opacity: 0;
+  }
+  50% {
+    transform: rotateY(180deg);
+    opacity: 0.5;
+  }
+  100% {
+    transform: rotateY(360deg);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes rightFade {
+  0% {
+    transform: translate(100px);
+    transform-origin: left;
+    opacity: 0;
+  }
+  50% {
+    transform-origin: left;
+    opacity: 0.3;
+  }
+  100% {
+    transform-origin: left;
+    opacity: 1;
+  }
+}
+
+@keyframes leftFade {
+  0% {
+    transform: translate(-100px);
+    transform-origin: right;
+    opacity: 0;
+  }
+  50% {
+    transform-origin: right;
+    opacity: 0.3;
+  }
+  100% {
+    transform-origin: right;
+    opacity: 1;
+  }
+}
+
+@keyframes stretchUp {
+  0% {
+    transform: scaleY(0.1);
+    transform-origin: bottom;
+    opacity: 1;
+  }
+  100% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+    opacity: 1;
+  }
+}
+
+@keyframes stretchDown {
+  0% {
+    transform: scaleY(0.1);
+    transform-origin: top;
+    opacity: 1;
+  }
+  100% {
+    transform: scaleY(1);
+    transform-origin: top;
+    opacity: 1;
+  }
+}
+
+@keyframes tilt {
+  0%,
+  50%,
+  100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(1deg);
+  }
+  75% {
+    transform: rotate(-1deg);
+  }
+}
