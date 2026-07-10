@@ -13,11 +13,14 @@ import { ParticlesBackground } from "./components/ParticlesBackground";
 import { FAQPage } from "./views/faqPage";
 import { ContactSupportView } from "./views/contactSupport";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react"
+
 
 function App() {
   return (
     <>
       <Analytics />
+      <SpeedInsights />
       <Helmet>
         <title>Goddess Fortuna</title>
         <meta
