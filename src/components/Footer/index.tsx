@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { TwitterLogo } from "../../assets/logos/TwitterLogo";
 import { DiscordLogo } from "../../assets/logos/DiscordLogo";
 
 export const Footer: FC = () => {
@@ -7,10 +6,9 @@ export const Footer: FC = () => {
     <footer className="footer">
       <div className="footer-wrapper">
         <div className="hidden sm:inline text-secondary content-center">
-          © 2026 Goddess Fortuna
+          © 2026 Zynk LLC
         </div>{" "}
         <div className="flex m-auto sm:m-0">
-          <TwitterLogo />
           <DiscordLogo />
         </div>
       </div>

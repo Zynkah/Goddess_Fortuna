@@ -26,6 +26,9 @@ export async function sendUsdcTip(
   if (!(amountUsdc > 0)) {
     throw new Error("Enter an amount greater than 0");
   }
+  if (!TIP_DESTINATION_WALLET) {
+    throw new Error("Tipping is not configured (missing VITE_TIP_DESTINATION_WALLET)");
+  }
 
   const mint = new PublicKey(USDC_MINT);
   const destination = new PublicKey(TIP_DESTINATION_WALLET);

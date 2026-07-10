@@ -1,7 +1,7 @@
 export const DiscordLogo = () => {
   return (
     <a
-      href="https://discord.com/invite/eUEwY3vS8R"
+      href="https://discord.gg/Tz9Nk9r5"
       target="_blank"
       rel="noopener noreferrer"
       className="border-white text-secondary hover:text-white leading-normal hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"

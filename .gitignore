@@ -37,6 +37,3 @@ yarn-error.log*
 
 # logs
 *.log
-
-/src/views/constants.ts
-/src/constants.ts

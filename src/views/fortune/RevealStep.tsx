@@ -3,7 +3,7 @@ import { Connection } from "@solana/web3.js";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { sendUsdcTip } from "../../utils/sendUsdcTip";
 import { notify } from "../../utils/notifications";
-import { CLUSTER_URL, SOLANA_COMMITMENT } from "../../constants";
+import { CLUSTER_URL, SOLANA_COMMITMENT, TIP_DESTINATION_WALLET } from "../../constants";
 
 interface RevealStepProps {
   isWin: boolean | null;
@@ -106,7 +106,7 @@ export const RevealStep = ({ isWin, onReset }: RevealStepProps) => {
         </div>
       )}
 
-      {isResolved && (
+      {isResolved && !!TIP_DESTINATION_WALLET && (
         <div className="fortuna-reveal-up mt-10 w-full max-w-[300px] border-t border-[rgba(201,162,39,0.25)] pt-6">
           <div className=" text-[10px] uppercase tracking-[3px] text-[#8a7a52]">
             Leave an offering (optional)
