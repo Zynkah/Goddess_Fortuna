@@ -3,7 +3,25 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   darkMode: "media",
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        cinzel: ["Cinzel", "serif"],
+        garamond: ['"Cormorant Garamond"', "serif"],
+      },
+      colors: {
+        fortuna: {
+          bg: "var(--fortuna-bg)",
+          "bg-raised": "var(--fortuna-bg-raised)",
+          gold: "var(--fortuna-gold)",
+          "gold-bright": "var(--fortuna-gold-bright)",
+          "gold-light": "var(--fortuna-gold-light)",
+          "gold-soft": "var(--fortuna-gold-soft)",
+          "gold-dim": "var(--fortuna-gold-dim)",
+          "gold-dimmer": "var(--fortuna-gold-dimmer)",
+          "gold-faint": "var(--fortuna-gold-faint)",
+        },
+      },
+    },
   },
   plugins: [
     require('daisyui'),

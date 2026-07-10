@@ -22,7 +22,7 @@ export const AppBar: React.FC = () => {
           <div className='flex items-center gap-2 p-2 ml-4 md:ml-10'>
             <Link
               to='/'
-              className='text-lg tracking-[4px] text-[#e8d5a0] md:text-xl'
+              className='font-cinzel text-lg tracking-[4px] text-fortuna-gold-light md:text-xl'
             >
               GODDESS FORTUNA
             </Link>
