@@ -20,7 +20,7 @@ module.exports = {
             body: ['Inter, sans-serif'],
           },
           'primary': '#000000',           /* Primary color */
-          'primary-focus': '#9945FF',     /* Primary color - focused */
+          'primary-focus': '#c9a227',     /* Primary color - focused */
           'primary-content': '#ffffff',   /* Foreground content color to use on primary color */
 
           'secondary': '#808080',         /* Secondary color */
