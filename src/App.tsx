@@ -23,7 +23,7 @@ function App() {
         <title>Goddess Fortuna</title>
         <meta
           name="description"
-          content="Ask the Goddess a question and let her flip your fate"
+          content="Ask the Goddess a question and let her flip a coin for your fate"
         />
       </Helmet>
 
