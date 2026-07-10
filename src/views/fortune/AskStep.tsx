@@ -1,5 +1,7 @@
+import { useState } from "react";
 import useGoddessQuestionStore from "../../stores/useGoddessQuestionStore";
 import fortunaStatue from "../../assets/fortuna.png";
+import { FORTUNA_PRIMARY_BUTTON_CLASS } from "./buttonStyles";
 
 interface AskStepProps {
   onProceed: () => void;
@@ -7,10 +9,20 @@ interface AskStepProps {
 
 export const AskStep = ({ onProceed }: AskStepProps) => {
   const { question, setQuestion } = useGoddessQuestionStore();
+  const [error, setError] = useState(false);
+
+  const handleProceed = () => {
+    if (!question.trim()) {
+      setError(true);
+      return;
+    }
+    setError(false);
+    onProceed();
+  };
 
   return (
     <div className="p-[clamp(30px,6vw,44px)] text-center">
-      <div className=" text-[10px] uppercase tracking-[4px] text-[#8a7a52]">
+      <div className="font-cinzel text-[10px] uppercase tracking-[4px] text-fortuna-gold-dim">
         Ask Fortuna a question
       </div>
       <div className="mx-auto mt-4 h-px w-10 bg-[rgba(201,162,39,0.5)]" />
@@ -18,7 +30,7 @@ export const AskStep = ({ onProceed }: AskStepProps) => {
       <div
         className="relative mx-auto mt-8 h-[min(340px,90vw)] w-[min(240px,66vw)] overflow-hidden rounded-t-[110px] rounded-b-md border border-[rgba(201,162,39,0.4)]"
         style={{
-          background: "radial-gradient(circle at 50% 32%, #4a3c24 0%, #241d10 55%, #0d0a06 100%)",
+          background: "radial-gradient(circle at 50% 32%, #4a3c24 0%, #241d10 55%, var(--fortuna-bg-raised) 100%)",
         }}
       >
         <img
@@ -28,24 +40,36 @@ export const AskStep = ({ onProceed }: AskStepProps) => {
           style={{ mixBlendMode: "multiply", filter: "brightness(1.4) contrast(1.05)" }}
         />
       </div>
-      <div className="mt-3  text-[9px] uppercase tracking-[2px] text-[#6f6034]">
+      <div className="mt-3 font-cinzel text-[9px] uppercase tracking-[2px] text-fortuna-gold-faint">
         Goddess Fortuna
       </div>
 
       <input
         value={question}
-        onChange={(e) => setQuestion(e.target.value)}
+        onChange={(e) => {
+          setQuestion(e.target.value);
+          if (error) setError(false);
+        }}
         placeholder="Will I find what I seek?"
-        className="fortuna-question-input mt-8 w-full border-0 border-b border-[rgba(201,162,39,0.3)] bg-transparent px-1 py-3 text-center text-[22px] italic text-[#e8d5a0]"
+        required
+        aria-invalid={error}
+        className={`fortuna-question-input mt-8 w-full border-0 border-b bg-transparent px-1 py-3 text-center font-garamond text-2xl italic text-fortuna-gold-light ${
+          error ? "border-red-500" : "border-[rgba(201,162,39,0.3)]"
+        }`}
       />
+      {error && (
+        <div className="mt-2 font-garamond text-sm text-red-500">
+          Please ask Fortuna a question before proceeding.
+        </div>
+      )}
 
-      <div
-        onClick={onProceed}
-        role="button"
-        className="mt-9 cursor-pointer border border-[#c9a227] p-4  text-sm tracking-[4px] text-[#e8d5a0]"
+      <button
+        type="button"
+        onClick={handleProceed}
+        className={`mt-9 w-full px-8 py-4 ${FORTUNA_PRIMARY_BUTTON_CLASS}`}
       >
         PROCEED
-      </div>
+      </button>
     </div>
   );
 };

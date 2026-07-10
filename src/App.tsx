@@ -10,8 +10,6 @@ import NotificationList from "./components/Notification";
 // Import views
 import { FortuneView } from "./views/fortune";
 import { ParticlesBackground } from "./components/ParticlesBackground";
-import { FAQPage } from "./views/faqPage";
-import { ContactSupportView } from "./views/contactSupport";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react"
 
@@ -38,8 +36,6 @@ function App() {
             <Routes>
               <Route path="/" element={<FortuneView />} />
               <Route path="/fortune" element={<FortuneView />} />
-              <Route path="/faqPage" element={<FAQPage />} />
-              <Route path="/contactSupport" element={<ContactSupportView />} />
             </Routes>
           </ContentContainer>
           <Footer />

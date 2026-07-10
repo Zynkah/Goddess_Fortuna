@@ -50,7 +50,7 @@
 button {
   color: inherit;
   cursor: pointer;
-   font-family: "PPSupplyMono", monospace;
+   font-family: "Cormorant Garamond", serif;
 }
 
 button:hover {
@@ -69,7 +69,7 @@ video {
 }
 
 html {
-   font-family: "PPSupplyMono", monospace;
+   font-family: "Cormorant Garamond", serif;
   background-color: var(--background-color);
   color: white;
 }
