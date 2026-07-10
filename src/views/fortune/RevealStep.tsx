@@ -88,7 +88,7 @@ export const RevealStep = ({ isWin, onReset }: RevealStepProps) => {
       {isWin && (
         <div>
           <div className="fortuna-reveal-up font-cinzel text-2xl leading-snug tracking-[3px] text-fortuna-gold-light">
-            HEADS —<br />
+            HEADS<br />
             FORTUNE FAVOURS YOU
           </div>
           <div className="fortuna-reveal-up mx-auto my-6 h-px w-[60px] bg-[rgba(201,162,39,0.5)]" />
@@ -101,7 +101,7 @@ export const RevealStep = ({ isWin, onReset }: RevealStepProps) => {
       {isResolved && !isWin && (
         <div>
           <div className="fortuna-reveal-up font-cinzel text-2xl leading-snug tracking-[3px] text-[#9a8a5e]">
-            TAILS —<br />
+            TAILS<br />
             FORTUNE TURNS AWAY
           </div>
           <div className="fortuna-reveal-up mx-auto my-6 h-px w-[60px] bg-[rgba(201,162,39,0.3)]" />

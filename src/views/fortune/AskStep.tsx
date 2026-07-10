@@ -1,3 +1,4 @@
+import { useState } from "react";
 import useGoddessQuestionStore from "../../stores/useGoddessQuestionStore";
 import fortunaStatue from "../../assets/fortuna.png";
 import { FORTUNA_PRIMARY_BUTTON_CLASS } from "./buttonStyles";
@@ -8,6 +9,16 @@ interface AskStepProps {
 
 export const AskStep = ({ onProceed }: AskStepProps) => {
   const { question, setQuestion } = useGoddessQuestionStore();
+  const [error, setError] = useState(false);
+
+  const handleProceed = () => {
+    if (!question.trim()) {
+      setError(true);
+      return;
+    }
+    setError(false);
+    onProceed();
+  };
 
   return (
     <div className="p-[clamp(30px,6vw,44px)] text-center">
@@ -35,14 +46,26 @@ export const AskStep = ({ onProceed }: AskStepProps) => {
 
       <input
         value={question}
-        onChange={(e) => setQuestion(e.target.value)}
+        onChange={(e) => {
+          setQuestion(e.target.value);
+          if (error) setError(false);
+        }}
         placeholder="Will I find what I seek?"
-        className="fortuna-question-input mt-8 w-full border-0 border-b border-[rgba(201,162,39,0.3)] bg-transparent px-1 py-3 text-center font-garamond text-2xl italic text-fortuna-gold-light"
+        required
+        aria-invalid={error}
+        className={`fortuna-question-input mt-8 w-full border-0 border-b bg-transparent px-1 py-3 text-center font-garamond text-2xl italic text-fortuna-gold-light ${
+          error ? "border-red-500" : "border-[rgba(201,162,39,0.3)]"
+        }`}
       />
+      {error && (
+        <div className="mt-2 font-garamond text-sm text-red-500">
+          Please ask Fortuna a question before proceeding.
+        </div>
+      )}
 
       <button
         type="button"
-        onClick={onProceed}
+        onClick={handleProceed}
         className={`mt-9 w-full px-8 py-4 ${FORTUNA_PRIMARY_BUTTON_CLASS}`}
       >
         PROCEED
