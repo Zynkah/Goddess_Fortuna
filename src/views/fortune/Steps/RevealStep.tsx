@@ -2,30 +2,48 @@ import { useEffect, useMemo, useState } from "react";
 import { Connection } from "@solana/web3.js";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { useWalletModal } from "@solana/wallet-adapter-react-ui";
-import { sendUsdcTip } from "../../utils/sendUsdcTip";
-import { notify } from "../../utils/notifications";
-import { CLUSTER_URL, SOLANA_COMMITMENT, TIP_DESTINATION_WALLET } from "../../constants";
-import headsCoin from "../../assets/Stater_Epeiros_Artermis_Heads.png";
-import tailsCoin from "../../assets/Stater_Epeiros_Artermis_Tails.png";
+import { sendUsdcTip } from "../../../utils/sendUsdcTip";
+import { notify } from "../../../utils/notifications";
+import { CLUSTER_URL, SOLANA_COMMITMENT, TIP_DESTINATION_WALLET } from "../../../constants";
+import headsCoin from "../../../assets/Stater_Epeiros_Artermis_Heads.png";
+import tailsCoin from "../../../assets/Stater_Epeiros_Artermis_Tails.png";
 import {
   FORTUNA_PILL_BUTTON_ACTIVE_CLASS,
   FORTUNA_PILL_BUTTON_CLASS,
   FORTUNA_PILL_BUTTON_INACTIVE_CLASS,
   FORTUNA_PRIMARY_BUTTON_CLASS,
-} from "./buttonStyles";
-import { CoinParticleBurst } from "./CoinParticleBurst";
-import { playGoldenSound, playWinSound } from "../../utils/fortunaSfx";
-import useFortunaProgressStore from "../../stores/useFortunaProgressStore";
+} from "../../../styles/buttonStyles";
+import { CoinParticleBurst } from "../CoinParticleBurst";
+import { FortuneWheel } from "../FortuneWheel";
+import { StarRating } from "../StarRating";
+import { playGoldenSound, playWinSound } from "../../../utils/fortunaSfx";
+import useFortunaProgressStore from "../../../stores/useFortunaProgressStore";
+import { CastDetail } from "./CastStep";
+import { WHEEL_SEGMENTS } from "../FortuneWheel/data";
+import { getWheelTargetRotation } from "../FortuneWheel/GetWheelTargetRotation";
 
 interface RevealStepProps {
   isWin: boolean | null;
   isGolden: boolean;
+  detail: CastDetail;
   onReset: () => void;
 }
 
 const TIP_AMOUNTS = [1, 5, 10];
 
-export const RevealStep = ({ isWin, isGolden, onReset }: RevealStepProps) => {
+const HEADER_BY_MODE: Record<CastDetail["mode"], string> = {
+  coin: "The coin of Fortuna",
+  wheel: "The wheel of Fortuna",
+  oracle: "The oracle speaks",
+};
+
+const IDLE_TEXT_BY_MODE: Record<CastDetail["mode"], string> = {
+  coin: "Fortuna casts her coin…",
+  wheel: "Fortuna spins her wheel…",
+  oracle: "Fortuna consults the mists…",
+};
+
+export const RevealStep = ({ isWin, isGolden, detail, onReset }: RevealStepProps) => {
   const isResolved = isWin !== null;
 
   useEffect(() => {
@@ -74,6 +92,9 @@ export const RevealStep = ({ isWin, isGolden, onReset }: RevealStepProps) => {
     }
   };
 
+  const wheelSegmentIndex =
+    detail.mode === "wheel" ? WHEEL_SEGMENTS.findIndex((s) => s.label === detail.segment) : -1;
+
   return (
     <div
       className="flex min-h-[560px] flex-col items-center justify-center p-[clamp(30px,6vw,44px)] text-center"
@@ -82,35 +103,63 @@ export const RevealStep = ({ isWin, isGolden, onReset }: RevealStepProps) => {
       }}
     >
       <div className="font-cinzel text-[10px] uppercase tracking-[4px] text-fortuna-gold-dim">
-        The coin of Fortuna
+        {HEADER_BY_MODE[detail.mode]}
       </div>
 
-      <div className="relative my-8 h-[132px] w-[132px]" style={{ perspective: "800px" }}>
-        <div
-          className="absolute inset-0 z-0 rounded-full"
-          style={{ boxShadow: "0 0 44px rgba(230,195,77,0.4)" }}
-        />
-        {isGolden && isWin && <div className="fortuna-coin--golden absolute -inset-1 z-20" />}
-        <img
-          src={isResolved && !isWin ? tailsCoin : headsCoin}
-          alt={isResolved ? (isWin ? "Heads" : "Tails") : "Fortuna's coin"}
-          className={`relative z-10 h-full w-full scale-110 rounded-full object-cover ${
-            isResolved ? "" : "fortuna-coin--flipping"
-          }`}
-        />
-        {isWin && <CoinParticleBurst golden={isGolden} />}
-      </div>
+      {detail.mode === "coin" && (
+        <div className="relative my-8 h-[132px] w-[132px]" style={{ perspective: "800px" }}>
+          <div
+            className="absolute inset-0 z-0 rounded-full"
+            style={{ boxShadow: "0 0 44px rgba(230,195,77,0.4)" }}
+          />
+          {isGolden && isWin && <div className="fortuna-coin--golden absolute -inset-1 z-20" />}
+          <img
+            src={isResolved && !isWin ? tailsCoin : headsCoin}
+            alt={isResolved ? (isWin ? "Heads" : "Tails") : "Fortuna's coin"}
+            className={`relative z-10 h-full w-full scale-110 rounded-full object-cover ${
+              isResolved ? "" : "fortuna-coin--flipping"
+            }`}
+          />
+          {isWin && <CoinParticleBurst golden={isGolden} />}
+        </div>
+      )}
+
+      {detail.mode === "wheel" && (
+        <div className="relative my-8 flex h-[160px] w-[160px] items-center justify-center">
+          <FortuneWheel
+            rotation={wheelSegmentIndex >= 0 ? getWheelTargetRotation(wheelSegmentIndex, 0) : 0}
+            spinning={false}
+          />
+          {isWin && <CoinParticleBurst golden={isGolden} />}
+        </div>
+      )}
+
+      {detail.mode === "oracle" && (
+        <div className="relative my-8 h-[132px] w-[132px]">
+          <div
+            className={`absolute inset-0 rounded-full ${isGolden && isWin ? "fortuna-coin--golden" : ""}`}
+            style={{
+              background: "radial-gradient(circle at 35% 30%, #4a3c24, #241d10 70%)",
+              boxShadow: "0 0 44px rgba(230,195,77,0.35)",
+            }}
+          />
+          <div className="absolute inset-0 flex items-center justify-center font-cinzel text-xs uppercase tracking-[2px] text-fortuna-gold-bright">
+            Oracle
+          </div>
+          {isWin && <CoinParticleBurst golden={isGolden} />}
+        </div>
+      )}
 
       {!isResolved && (
         <div className="font-garamond text-2xl italic text-fortuna-gold-soft">
-          Fortuna casts her coin…
+          {IDLE_TEXT_BY_MODE[detail.mode]}
         </div>
       )}
 
       {isWin && isGolden && (
         <div className="fortuna-reveal-up-1 mb-2">
           <div className="font-cinzel text-sm tracking-[3px] text-fortuna-gold-bright">
-            ✦ GOLDEN FORTUNE ✦
+            GOLDEN FORTUNE
           </div>
           <div className="mt-1 font-garamond text-sm italic text-fortuna-gold-soft">
             Rare — fortune smiles rarely this wide.
@@ -118,7 +167,7 @@ export const RevealStep = ({ isWin, isGolden, onReset }: RevealStepProps) => {
         </div>
       )}
 
-      {isWin && (
+      {isResolved && detail.mode === "coin" && isWin && (
         <div>
           <div className="fortuna-reveal-up-1 font-cinzel text-2xl leading-snug tracking-[3px] text-fortuna-gold-light">
             HEADS<br />
@@ -131,7 +180,7 @@ export const RevealStep = ({ isWin, isGolden, onReset }: RevealStepProps) => {
         </div>
       )}
 
-      {isResolved && !isWin && (
+      {isResolved && detail.mode === "coin" && !isWin && (
         <div>
           <div className="fortuna-reveal-up-1 font-cinzel text-2xl leading-snug tracking-[3px] text-[#9a8a5e]">
             TAILS<br />
@@ -140,6 +189,42 @@ export const RevealStep = ({ isWin, isGolden, onReset }: RevealStepProps) => {
           <div className="fortuna-reveal-up-2 mx-auto my-6 h-px w-[60px] bg-[rgba(201,162,39,0.3)]" />
           <div className="fortuna-reveal-up-3 mx-auto max-w-[300px] font-garamond text-2xl italic leading-snug text-fortuna-gold-dimmer">
             "The wheel turns on. Ask again whenever you like."
+          </div>
+        </div>
+      )}
+
+      {isResolved && detail.mode === "wheel" && (
+        <div>
+          <div
+            className={`fortuna-reveal-up-1 font-cinzel text-2xl leading-snug tracking-[3px] ${
+              isWin ? "text-fortuna-gold-light" : "text-[#9a8a5e]"
+            }`}
+          >
+            {detail.segment.toUpperCase()}
+          </div>
+          <div
+            className={`fortuna-reveal-up-2 mx-auto my-6 h-px w-[60px] ${
+              isWin ? "bg-[rgba(201,162,39,0.5)]" : "bg-[rgba(201,162,39,0.3)]"
+            }`}
+          />
+          <div
+            className={`fortuna-reveal-up-3 mx-auto max-w-[300px] font-garamond text-2xl italic leading-snug ${
+              isWin ? "text-fortuna-gold-soft" : "text-fortuna-gold-dimmer"
+            }`}
+          >
+            {isWin ? "Fortune leans your way." : "The wheel turns on. Ask again whenever you like."}
+          </div>
+        </div>
+      )}
+
+      {isResolved && detail.mode === "oracle" && (
+        <div>
+          <div className="fortuna-reveal-up-1 mx-auto max-w-[300px] font-garamond text-2xl italic leading-snug text-fortuna-gold-light">
+            "{detail.phrase}"
+          </div>
+          <div className="fortuna-reveal-up-2 mx-auto my-6 h-px w-[60px] bg-[rgba(201,162,39,0.4)]" />
+          <div className="fortuna-reveal-up-3">
+            <StarRating rating={detail.rating} />
           </div>
         </div>
       )}
@@ -207,7 +292,7 @@ export const RevealStep = ({ isWin, isGolden, onReset }: RevealStepProps) => {
               {tipPhase === "sending"
                 ? "SENDING…"
                 : tipPhase === "confirmed"
-                ? "✓ CONFIRMED"
+                ? "CONFIRMED"
                 : tipPhase === "sent"
                 ? "OFFERING SENT"
                 : isTipAmountValid

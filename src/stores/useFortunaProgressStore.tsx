@@ -6,7 +6,7 @@ import { XP_PER_CAST, XP_BONUS_WIN, XP_BONUS_GOLDEN } from "../utils/fortunaLeve
 import { evaluateAchievements } from "../utils/fortunaAchievements";
 
 export interface FortunaHistoryEntry {
-  result: "heads" | "tails" | "golden";
+  result: "heads" | "tails" | "golden" | "wheel" | "oracle";
   timestamp: number;
 }
 
@@ -26,7 +26,7 @@ export interface FortunaCloudStats {
 interface FortunaProgressStore extends State, FortunaCloudStats {
   soundEnabled: boolean;
   hasSyncedWallet: boolean;
-  recordCast: (result: { isWin: boolean; isGolden: boolean }) => void;
+  recordCast: (result: { isWin: boolean; isGolden: boolean; mode?: "coin" | "wheel" | "oracle" }) => void;
   recordOffering: () => void;
   setSoundEnabled: (enabled: boolean) => void;
   hydrateFromCloud: (stats: FortunaCloudStats) => void;
@@ -70,7 +70,7 @@ const useFortunaProgressStore = create<FortunaProgressStore>(
         soundEnabled: true,
         hasSyncedWallet: false,
 
-        recordCast: ({ isWin, isGolden }) => {
+        recordCast: ({ isWin, isGolden, mode = "coin" }) => {
           const state = get();
           const today = getLocalDateKey();
           const yesterday = getPreviousDateKey(today);
@@ -88,11 +88,8 @@ const useFortunaProgressStore = create<FortunaProgressStore>(
           if (isWin) xpGain += XP_BONUS_WIN;
           if (isGolden) xpGain += XP_BONUS_GOLDEN;
 
-          const result: FortunaHistoryEntry["result"] = isGolden
-            ? "golden"
-            : isWin
-            ? "heads"
-            : "tails";
+          const result: FortunaHistoryEntry["result"] =
+            mode === "wheel" ? "wheel" : mode === "oracle" ? "oracle" : isGolden ? "golden" : isWin ? "heads" : "tails";
 
           set({
             streakCount,

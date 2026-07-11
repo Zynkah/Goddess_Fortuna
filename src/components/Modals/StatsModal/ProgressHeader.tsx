@@ -1,5 +1,5 @@
-import useFortunaProgressStore from "../../stores/useFortunaProgressStore";
-import { getLevelInfo } from "../../utils/fortunaLeveling";
+import useFortunaProgressStore from "../../../stores/useFortunaProgressStore";
+import { getLevelInfo } from "../../../utils/fortunaLeveling";
 
 export const ProgressHeader = () => {
   const { streakCount, totalXp } = useFortunaProgressStore();
@@ -11,7 +11,6 @@ export const ProgressHeader = () => {
       {streakCount > 0 && (
         <div className="flex flex-col items-center gap-1.5">
           <div className="inline-flex items-center gap-2 rounded-full border border-fortuna-gold bg-[rgba(201,162,39,0.1)] px-4 py-1.5">
-            <span className="text-fortuna-gold-bright">◆</span>
             <span className="font-cinzel text-xs tracking-[1px] text-fortuna-gold-light">
               {streakCount}-DAY STREAK
             </span>

@@ -1,6 +1,7 @@
-import { ReactNode, useEffect } from "react";
+import { ReactNode } from "react";
 import { createPortal } from "react-dom";
 import { XIcon } from "@heroicons/react/outline";
+import useEscapeKey from "../../hooks/useEscapeKey";
 
 interface FortunaModalProps {
   isOpen: boolean;
@@ -11,16 +12,7 @@ interface FortunaModalProps {
 }
 
 export const FortunaModal = ({ isOpen, onClose, title, maxWidth = "420px", children }: FortunaModalProps) => {
-  useEffect(() => {
-    if (!isOpen) return;
-
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") onClose();
-    };
-
-    window.addEventListener("keydown", handleEscape);
-    return () => window.removeEventListener("keydown", handleEscape);
-  }, [isOpen, onClose]);
+  useEscapeKey(onClose, isOpen);
 
   if (!isOpen) return null;
 
@@ -31,10 +23,10 @@ export const FortunaModal = ({ isOpen, onClose, title, maxWidth = "420px", child
     >
       <div
         onClick={(event) => event.stopPropagation()}
-        className="fortuna-card w-full p-[clamp(28px,6vw,40px)]"
+        className="fortuna-card flex w-full max-h-[85vh] flex-col p-[clamp(28px,6vw,40px)]"
         style={{ maxWidth }}
       >
-        <div className="flex items-center justify-between">
+        <div className="flex shrink-0 items-center justify-between">
           <div className="font-cinzel text-xs uppercase tracking-[3px] text-fortuna-gold-light">{title}</div>
           <button
             type="button"
@@ -46,7 +38,7 @@ export const FortunaModal = ({ isOpen, onClose, title, maxWidth = "420px", child
           </button>
         </div>
 
-        <div className="mt-6">{children}</div>
+        <div className="mt-6 overflow-y-auto">{children}</div>
       </div>
     </div>,
     document.body

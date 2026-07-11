@@ -1,9 +1,9 @@
 import { FC, useState } from "react";
 import useGoddessQuestionStore from "../../stores/useGoddessQuestionStore";
 import useFortunaProgressStore from "../../stores/useFortunaProgressStore";
-import { AskStep } from "./AskStep";
-import { CastStep } from "./CastStep";
-import { RevealStep } from "./RevealStep";
+import { AskStep } from "./Steps/AskStep";
+import { CastStep, CastDetail } from "./Steps/CastStep";
+import { RevealStep } from "./Steps/RevealStep";
 
 const GOLD = "var(--fortuna-gold-light)";
 const GOLD_FAINT = "var(--fortuna-gold-faint)";
@@ -13,6 +13,7 @@ export const FortuneView: FC = () => {
   const [step, setStep] = useState<0 | 1 | 2>(0);
   const [isWin, setIsWin] = useState<boolean | null>(null);
   const [isGolden, setIsGolden] = useState(false);
+  const [detail, setDetail] = useState<CastDetail>({ mode: "coin" });
 
   const reset = () => {
     setQuestion("");
@@ -68,15 +69,18 @@ export const FortuneView: FC = () => {
             {step === 1 && (
               <CastStep
                 onBack={() => setStep(0)}
-                onCastComplete={(result, golden) => {
+                onCastComplete={(result, golden, castDetail) => {
                   setIsWin(result);
                   setIsGolden(golden);
-                  useFortunaProgressStore.getState().recordCast({ isWin: result, isGolden: golden });
+                  setDetail(castDetail);
+                  useFortunaProgressStore
+                    .getState()
+                    .recordCast({ isWin: result, isGolden: golden, mode: castDetail.mode });
                   setStep(2);
                 }}
               />
             )}
-            {step === 2 && <RevealStep isWin={isWin} isGolden={isGolden} onReset={reset} />}
+            {step === 2 && <RevealStep isWin={isWin} isGolden={isGolden} detail={detail} onReset={reset} />}
           </div>
         </div>
       </main>

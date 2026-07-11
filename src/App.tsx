@@ -6,7 +6,7 @@ import { AppBar } from "./components/AppBar";
 import { ContentContainer } from "./components/AppBar/ContentContainer";
 import { Footer } from "./components/Footer";
 import NotificationList from "./components/Notification";
-import { StatsSync } from "./components/StatsSync";
+import { StatsSync } from "./components/Modals/StatsModal/StatsSync";
 
 // Import views
 import { FortuneView } from "./views/fortune";

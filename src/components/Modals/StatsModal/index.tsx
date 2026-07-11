@@ -1,9 +1,9 @@
 import { useWallet } from "@solana/wallet-adapter-react";
 import { useWalletModal } from "@solana/wallet-adapter-react-ui";
-import { FortunaModal } from "../../components/Modal";
+import { FortunaModal } from "../../Modal";
 import { ProgressHeader } from "./ProgressHeader";
 import { SessionHistoryStrip } from "./SessionHistoryStrip";
-import { FORTUNA_PRIMARY_BUTTON_CLASS } from "./buttonStyles";
+import { FORTUNA_PRIMARY_BUTTON_CLASS } from "../../../styles/buttonStyles";
 
 interface StatsModalProps {
   isOpen: boolean;
@@ -19,7 +19,6 @@ export const StatsModal = ({ isOpen, onClose }: StatsModalProps) => {
       <div className="flex flex-col gap-8">
         {connected ? (
           <div className="flex items-center justify-center gap-2 font-garamond text-sm italic text-fortuna-gold-dim">
-            <span className="text-fortuna-gold-bright">☁</span>
             Synced to your wallet
           </div>
         ) : (

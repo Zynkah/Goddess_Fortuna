@@ -1,7 +1,8 @@
 import { useState } from "react";
-import useGoddessQuestionStore from "../../stores/useGoddessQuestionStore";
-import fortunaStatue from "../../assets/fortuna.png";
-import { FORTUNA_PRIMARY_BUTTON_CLASS } from "./buttonStyles";
+import useGoddessQuestionStore from "../../../stores/useGoddessQuestionStore";
+import fortunaStatue from "../../../assets/fortuna.png";
+import { FORTUNA_PRIMARY_BUTTON_CLASS } from "../../../styles/buttonStyles";
+import { ModeSelectDropdown } from "../../../components/Dropdowns/ModeSelectDropdown";
 
 interface AskStepProps {
   onProceed: () => void;
@@ -22,7 +23,12 @@ export const AskStep = ({ onProceed }: AskStepProps) => {
 
   return (
     <div className="p-[clamp(30px,6vw,44px)] text-center">
-      <div className="font-cinzel text-[10px] uppercase tracking-[4px] text-fortuna-gold-dim">
+      <div className="font-cinzel text-[10px] uppercase tracking-[2px] text-fortuna-gold-dim">
+        How shall Fortuna answer?
+      </div>
+      <ModeSelectDropdown />
+
+      <div className="font-cinzel mt-9 text-[10px] uppercase tracking-[4px] text-fortuna-gold-dim">
         Ask Fortuna a question
       </div>
       <div className="mx-auto mt-4 h-px w-10 bg-[rgba(201,162,39,0.5)]" />

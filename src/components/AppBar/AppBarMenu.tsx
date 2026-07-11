@@ -3,8 +3,9 @@ import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import NetworkSwitcher from './NetworkSwitcher'
 import { useAutoConnect } from '../../contexts/AutoConnectProvider'
 import useFortunaProgressStore from '../../stores/useFortunaProgressStore'
-import { StatsModal } from '../../views/fortune/StatsModal'
-import { HowItWorksModal } from '../../views/fortune/HowItWorksModal'
+import { StatsModal } from '../Modals/StatsModal'
+import { HowItWorksModal } from '../Modals/HowItWorksModal'
+import useEscapeKey from '../../hooks/useEscapeKey'
 import { APPBAR_ICON_BUTTON_CLASS, APPBAR_PANEL_CLASS } from './uiTokens'
 
 const MENU_ROW_CLASS =
@@ -18,6 +19,8 @@ export const AppBarMenu = () => {
   const { soundEnabled, setSoundEnabled } = useFortunaProgressStore()
   const containerRef = useRef<HTMLDivElement>(null)
 
+  useEscapeKey(() => setIsOpen(false), isOpen)
+
   useEffect(() => {
     if (!isOpen) {
       return
@@ -29,18 +32,10 @@ export const AppBarMenu = () => {
       }
     }
 
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        setIsOpen(false)
-      }
-    }
-
     document.addEventListener('mousedown', handlePointerDown)
-    window.addEventListener('keydown', handleEscape)
 
     return () => {
       document.removeEventListener('mousedown', handlePointerDown)
-      window.removeEventListener('keydown', handleEscape)
     }
   }, [isOpen])
 
