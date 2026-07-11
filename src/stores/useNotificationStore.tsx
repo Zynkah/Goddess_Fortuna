@@ -3,7 +3,7 @@ import produce from "immer";
 
 interface NotificationStore extends State {
   notifications: Array<{
-    type: "success" | "error" | "info";
+    type: "success" | "error" | "info" | "achievement";
     message: string;
     description?: string;
     txid?: string;

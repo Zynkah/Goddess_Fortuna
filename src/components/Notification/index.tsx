@@ -39,7 +39,7 @@ const NotificationList = () => {
 };
 
 interface NotificationProps {
-  type: "success" | "error" | "info";
+  type: "success" | "error" | "info" | "achievement";
   message: string;
   description?: string;
   txid?: string;

@@ -1,20 +1,10 @@
-import React, { useCallback, useState } from 'react'
-import { SettingsDropdown } from './SettingsDropdown'
+import React from 'react'
+import { AppBarMenu } from './AppBarMenu'
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui'
 import { Link } from 'react-router-dom'
 import { APPBAR_WALLET_BUTTON_CLASS } from './uiTokens'
 
 export const AppBar: React.FC = () => {
-  const [activeMenu, setActiveMenu] = useState<'settings' | null>(null)
-
-  const toggleSettingsMenu = useCallback(() => {
-    setActiveMenu(current => (current === 'settings' ? null : 'settings'))
-  }, [])
-
-  const closeSettingsMenu = useCallback(() => {
-    setActiveMenu(current => (current === 'settings' ? null : current))
-  }, [])
-
   return (
     <div className='sticky top-0 z-50'>
       <div className='navbar border-b border-[rgba(201,162,39,0.14)] bg-[#070502]/95 backdrop-blur-sm'>
@@ -31,11 +21,7 @@ export const AppBar: React.FC = () => {
 
         <div className='navbar-end gap-2 pr-2 sm:pr-4'>
           <WalletMultiButton className={APPBAR_WALLET_BUTTON_CLASS} />
-          <SettingsDropdown
-            isOpen={activeMenu === 'settings'}
-            onToggle={toggleSettingsMenu}
-            onClose={closeSettingsMenu}
-          />
+          <AppBarMenu />
         </div>
       </div>
     </div>

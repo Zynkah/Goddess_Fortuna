@@ -1,4 +1,5 @@
 import {
+  BadgeCheckIcon,
   CheckCircleIcon,
   InformationCircleIcon,
   XCircleIcon,
@@ -7,7 +8,7 @@ import {
 
 interface NotificationWrapperProps {
   children: React.ReactNode;
-  type: "success" | "error" | "info";
+  type: "success" | "error" | "info" | "achievement";
   onHide?: () => void;
 }
 
@@ -21,6 +22,8 @@ export const NotificationWrapper = ({
       ? "text-rose-300"
       : type === "info"
       ? "text-sky-300"
+      : type === "achievement"
+      ? "text-amber-300"
       : "text-emerald-300";
 
   return (
@@ -38,6 +41,9 @@ export const NotificationWrapper = ({
             )}
             {type === "error" && (
               <XCircleIcon className={`mr-1 h-8 w-8 ${iconClassName}`} />
+            )}
+            {type === "achievement" && (
+              <BadgeCheckIcon className={`mr-1 h-8 w-8 ${iconClassName}`} />
             )}
           </div>
           <div className="ml-2 w-0 flex-1">{children}</div>

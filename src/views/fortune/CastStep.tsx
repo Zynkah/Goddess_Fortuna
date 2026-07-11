@@ -1,10 +1,13 @@
 import { useState } from "react";
 import useGoddessQuestionStore from "../../stores/useGoddessQuestionStore";
 import { FORTUNA_GHOST_BUTTON_CLASS, FORTUNA_PRIMARY_BUTTON_CLASS } from "./buttonStyles";
+import { playCastSound } from "../../utils/fortunaSfx";
+
+const GOLDEN_FORTUNE_CHANCE = 0.08;
 
 interface CastStepProps {
   onBack: () => void;
-  onCastComplete: (isWin: boolean) => void;
+  onCastComplete: (isWin: boolean, isGolden: boolean) => void;
 }
 
 export const CastStep = ({ onBack, onCastComplete }: CastStepProps) => {
@@ -13,8 +16,10 @@ export const CastStep = ({ onBack, onCastComplete }: CastStepProps) => {
 
   const handleCast = () => {
     setIsCasting(true);
+    playCastSound();
     const isWin = Math.random() < 0.5;
-    setTimeout(() => onCastComplete(isWin), 1200);
+    const isGolden = isWin && Math.random() < GOLDEN_FORTUNE_CHANCE;
+    setTimeout(() => onCastComplete(isWin, isGolden), 1200);
   };
 
   return (
