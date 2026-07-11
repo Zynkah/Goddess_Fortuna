@@ -6,6 +6,7 @@ import { AppBar } from "./components/AppBar";
 import { ContentContainer } from "./components/AppBar/ContentContainer";
 import { Footer } from "./components/Footer";
 import NotificationList from "./components/Notification";
+import { StatsSync } from "./components/StatsSync";
 
 // Import views
 import { FortuneView } from "./views/fortune";
@@ -31,6 +32,7 @@ function App() {
         <div className="flex flex-col page">
           <ParticlesBackground />
           <NotificationList />
+          <StatsSync />
           <AppBar />
           <ContentContainer>
             <Routes>

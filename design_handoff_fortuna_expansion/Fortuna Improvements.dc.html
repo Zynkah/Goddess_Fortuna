@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#1a1a1a; font-family:"Cormorant Garamond",serif; }
+  .cinzel { font-family:"Cinzel",serif; }
+  @keyframes fortunaPulse { 0%,100% { opacity:0.5; transform:scale(0.9); } 50% { opacity:1; transform:scale(1.15); } }
+  @keyframes fortunaBurst {
+    0% { opacity:1; transform: translate(-50%,-50%) rotate(var(--a,0deg)) translate(0px); }
+    100% { opacity:0; transform: translate(-50%,-50%) rotate(var(--a,0deg)) translate(70px); }
+  }
+</style>
+</helmet>
+
+<div style="padding:48px; display:flex; flex-direction:column; gap:40px;">
+
+  <section id="4-header" style="max-width:900px;">
+    <div class="cinzel" style="color:#e6c34d; font-size:12px; letter-spacing:2px; margin-bottom:6px;">TURN 4 — EXPANDED IDENTITY CONCEPT</div>
+    <div style="color:#cbb884; font-size:15px; line-height:1.6; font-style:italic;">Mode select (Coin / Wheel / Oracle) &rarr; offering &rarr; cinematic reveal &rarr; poetic answer + fortune rating &rarr; saved to the Book of Fate. Mockups below follow that spine.</div>
+  </section>
+
+  <section id="4a-wrap" style="display:flex; gap:40px; flex-wrap:wrap; align-items:flex-start;">
+
+    <div id="4a" style="width:340px;">
+      <div class="cinzel" style="color:#e6c34d; font-size:12px; letter-spacing:2px; margin-bottom:10px; display:flex; align-items:center; gap:8px;">
+        <span style="background:#e6c34d; color:#1a1a1a; border-radius:3px; padding:2px 7px; font-weight:600;">4a</span>
+        Mode select
+      </div>
+      <div style="background:linear-gradient(180deg,#0d0a06,#070502); border:1px solid rgba(201,162,39,0.28); padding:28px; text-align:center;">
+        <div class="cinzel" style="font-size:11px; letter-spacing:2px; color:#8a7a52; margin-bottom:16px;">HOW SHALL FORTUNA ANSWER?</div>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div style="border:1px solid #c9a227; background:rgba(201,162,39,0.08); padding:12px; display:flex; align-items:center; gap:12px; text-align:left;">
+            <span style="font-size:20px;">&#127777;</span>
+            <div><div class="cinzel" style="font-size:12px; color:#e8d5a0; letter-spacing:1px;">THE COIN</div><div style="font-size:11px; color:#8a7a52;">A simple yes or no</div></div>
+          </div>
+          <div style="border:1px solid rgba(201,162,39,0.3); padding:12px; display:flex; align-items:center; gap:12px; text-align:left;">
+            <span style="font-size:20px;">&#9673;</span>
+            <div><div class="cinzel" style="font-size:12px; color:#e8d5a0; letter-spacing:1px;">THE WHEEL</div><div style="font-size:11px; color:#8a7a52;">Fortune in eight faces</div></div>
+          </div>
+          <div style="border:1px solid rgba(201,162,39,0.3); padding:12px; display:flex; align-items:center; gap:12px; text-align:left;">
+            <span style="font-size:20px;">&#127183;</span>
+            <div><div class="cinzel" style="font-size:12px; color:#e8d5a0; letter-spacing:1px;">THE ORACLE</div><div style="font-size:11px; color:#8a7a52;">A cryptic word of counsel</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="4b" style="width:340px;">
+      <div class="cinzel" style="color:#e6c34d; font-size:12px; letter-spacing:2px; margin-bottom:10px; display:flex; align-items:center; gap:8px;">
+        <span style="background:#e6c34d; color:#1a1a1a; border-radius:3px; padding:2px 7px; font-weight:600;">4b</span>
+        Offering ritual
+      </div>
+      <div style="background:linear-gradient(180deg,#0d0a06,#070502); border:1px solid rgba(201,162,39,0.28); padding:28px; text-align:center;">
+        <div class="cinzel" style="font-size:11px; letter-spacing:2px; color:#8a7a52; margin-bottom:16px;">MAKE AN OFFERING</div>
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:10px;">
+          <div style="border:1px solid #c9a227; background:rgba(201,162,39,0.08); padding:14px 6px;"><div style="font-size:22px;">&#129689;</div><div style="font-size:10px; color:#e8d5a0; margin-top:6px;" class="cinzel">GOLD COIN</div></div>
+          <div style="border:1px solid rgba(201,162,39,0.25); padding:14px 6px;"><div style="font-size:22px;">&#127810;</div><div style="font-size:10px; color:#8a7a52; margin-top:6px;" class="cinzel">OLIVE BRANCH</div></div>
+          <div style="border:1px solid rgba(201,162,39,0.25); padding:14px 6px;"><div style="font-size:22px;">&#127800;</div><div style="font-size:10px; color:#8a7a52; margin-top:6px;" class="cinzel">FLOWER</div></div>
+        </div>
+        <div style="margin-top:14px; font-size:11px; color:#6f6034; font-style:italic;">A gesture of respect before the question — atmosphere, not odds.</div>
+      </div>
+    </div>
+
+    <div id="4c" style="width:340px;">
+      <div class="cinzel" style="color:#e6c34d; font-size:12px; letter-spacing:2px; margin-bottom:10px; display:flex; align-items:center; gap:8px;">
+        <span style="background:#e6c34d; color:#1a1a1a; border-radius:3px; padding:2px 7px; font-weight:600;">4c</span>
+        The Wheel — interactive
+      </div>
+      <div style="background:linear-gradient(180deg,#0d0a06,#070502); border:1px solid rgba(201,162,39,0.28); padding:28px; text-align:center;">
+        <div style="height:180px; display:flex; align-items:center; justify-content:center;">
+          {{ wheel }}
+        </div>
+        <button onClick="{{ spinWheel }}" class="cinzel" style="margin-top:6px; padding:10px 22px; background:rgba(201,162,39,0.06); border:1px solid #c9a227; color:#e8d5a0; font-size:11px; letter-spacing:2px; cursor:pointer;">
+          {{ wheelButtonLabel }}
+        </button>
+        <div class="cinzel" style="margin-top:10px; min-height:20px; font-size:13px; color:#e6c34d; letter-spacing:1px;">{{ wheelResult }}</div>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="4d-wrap" style="display:flex; gap:40px; flex-wrap:wrap; align-items:flex-start;">
+
+    <div id="4d" style="width:340px;">
+      <div class="cinzel" style="color:#e6c34d; font-size:12px; letter-spacing:2px; margin-bottom:10px; display:flex; align-items:center; gap:8px;">
+        <span style="background:#e6c34d; color:#1a1a1a; border-radius:3px; padding:2px 7px; font-weight:600;">4d</span>
+        Oracle answer + rating
+      </div>
+      <div style="background:linear-gradient(180deg,#0d0a06,#070502); border:1px solid rgba(201,162,39,0.28); padding:28px; text-align:center;">
+        <div style="font-style:italic; font-size:19px; color:#e8d5a0; line-height:1.5;">"Patience brings reward."</div>
+        <div style="width:50px; height:1px; background:rgba(201,162,39,0.4); margin:18px auto;"></div>
+        <div class="cinzel" style="font-size:10px; letter-spacing:2px; color:#8a7a52; margin-bottom:8px;">FORTUNE RATING</div>
+        <div style="display:flex; justify-content:center; gap:4px;">
+          <span style="color:#e6c34d;">&#9733;</span><span style="color:#e6c34d;">&#9733;</span><span style="color:#e6c34d;">&#9733;</span><span style="color:rgba(201,162,39,0.25);">&#9733;</span><span style="color:rgba(201,162,39,0.25);">&#9733;</span>
+        </div>
+        <div class="cinzel" style="margin-top:6px; font-size:11px; letter-spacing:1px; color:#cbb884;">FAVORABLE</div>
+      </div>
+    </div>
+
+    <div id="4e" style="width:340px;">
+      <div class="cinzel" style="color:#e6c34d; font-size:12px; letter-spacing:2px; margin-bottom:10px; display:flex; align-items:center; gap:8px;">
+        <span style="background:#e6c34d; color:#1a1a1a; border-radius:3px; padding:2px 7px; font-weight:600;">4e</span>
+        Daily Fortune card
+      </div>
+      <div style="background:linear-gradient(180deg,#0d0a06,#070502); border:1px solid rgba(201,162,39,0.28); padding:24px; text-align:left;">
+        <div class="cinzel" style="font-size:11px; letter-spacing:2px; color:#8a7a52; text-align:center; margin-bottom:14px;">TODAY'S FORTUNE</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px 18px; font-size:13px; color:#cbb884;">
+          <div><span style="color:#6f6034;">Color</span><br><span style="color:#e8d5a0;">Gold</span></div>
+          <div><span style="color:#6f6034;">Number</span><br><span style="color:#e8d5a0;">VII</span></div>
+          <div><span style="color:#6f6034;">Hour</span><br><span style="color:#e8d5a0;">Sunset</span></div>
+          <div><span style="color:#6f6034;">Element</span><br><span style="color:#e8d5a0;">Fire</span></div>
+        </div>
+        <div style="margin-top:16px; padding-top:14px; border-top:1px solid rgba(201,162,39,0.2); font-style:italic; font-size:14px; color:#e8d5a0; text-align:center;">"Unexpected meetings bring opportunity."</div>
+      </div>
+    </div>
+
+    <div id="4f" style="width:340px;">
+      <div class="cinzel" style="color:#e6c34d; font-size:12px; letter-spacing:2px; margin-bottom:10px; display:flex; align-items:center; gap:8px;">
+        <span style="background:#e6c34d; color:#1a1a1a; border-radius:3px; padding:2px 7px; font-weight:600;">4f</span>
+        Book of Fate entry
+      </div>
+      <div style="background:linear-gradient(180deg,#0d0a06,#070502); border:1px solid rgba(201,162,39,0.28); padding:24px; text-align:left;">
+        <div class="cinzel" style="font-size:10px; letter-spacing:2px; color:#6f6034;">MAY 12</div>
+        <div style="font-size:14px; color:#cbb884; margin-top:6px; font-style:italic;">"Will my interview go well?"</div>
+        <div style="margin-top:10px; font-size:13px; color:#8a7a52;">Fortuna answered:</div>
+        <div style="font-size:15px; color:#e8d5a0; margin-top:2px;">"The road opens."</div>
+        <div style="margin-top:12px; display:flex; align-items:center; gap:6px; font-size:12px; color:#7ea87e;">
+          <span>&#10003;</span> Came True
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="4g-wrap" style="display:flex; gap:40px; flex-wrap:wrap; align-items:flex-start;">
+    <div id="4g" style="width:460px;">
+      <div class="cinzel" style="color:#e6c34d; font-size:12px; letter-spacing:2px; margin-bottom:10px; display:flex; align-items:center; gap:8px;">
+        <span style="background:#e6c34d; color:#1a1a1a; border-radius:3px; padding:2px 7px; font-weight:600;">4g</span>
+        Rare divine event — interactive
+      </div>
+      <div style="background:{{ divineBg }}; border:1px solid #e6c34d; padding:36px; text-align:center; transition:background 0.8s ease;">
+        <div class="cinzel" style="font-size:14px; letter-spacing:3px; color:#1a1a1a; background:#e6c34d; display:inline-block; padding:6px 16px;">
+          {{ divineLabel }}
+        </div>
+        <div style="margin-top:20px; font-style:italic; font-size:17px; color:#3a3010;">
+          {{ divineSub }}
+        </div>
+        <button onClick="{{ triggerDivine }}" class="cinzel" style="margin-top:22px; padding:10px 22px; background:#1a1608; border:1px solid #3a3010; color:#e8d5a0; font-size:11px; letter-spacing:2px; cursor:pointer;">
+          {{ divineButtonLabel }}
+        </button>
+      </div>
+      <div style="margin-top:10px; font-size:13px; color:#999;">~1-in-100 session event: screen turns gold, coins rain, unique artwork/music plays. Highly shareable moment.</div>
+    </div>
+  </section>
+
+  <section id="3a-wrap" style="display:flex; gap:40px; flex-wrap:wrap; align-items:flex-start;">
+
+    <div id="3a" style="width:340px;">
+      <div class="cinzel" style="color:#e6c34d; font-size:12px; letter-spacing:2px; margin-bottom:10px; display:flex; align-items:center; gap:8px;">
+        <span style="background:#e6c34d; color:#1a1a1a; border-radius:3px; padding:2px 7px; font-weight:600;">3a</span>
+        Streak counter
+      </div>
+      <div style="background:linear-gradient(180deg,#0d0a06,#070502); border:1px solid rgba(201,162,39,0.28); padding:28px; text-align:center;">
+        <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(201,162,39,0.1); border:1px solid #c9a227; border-radius:20px; padding:6px 16px;">
+          <span style="color:#e6c34d; font-size:16px;">&#9670;</span>
+          <span class="cinzel" style="font-size:13px; letter-spacing:1px; color:#e8d5a0;">4-DAY STREAK</span>
+        </div>
+        <div style="margin-top:18px; font-size:13px; color:#8a7a52; font-style:italic;">Fortune favours the faithful — return tomorrow to keep it alive.</div>
+      </div>
+    </div>
+
+    <div id="3b" style="width:340px;">
+      <div class="cinzel" style="color:#e6c34d; font-size:12px; letter-spacing:2px; margin-bottom:10px; display:flex; align-items:center; gap:8px;">
+        <span style="background:#e6c34d; color:#1a1a1a; border-radius:3px; padding:2px 7px; font-weight:600;">3b</span>
+        XP / level bar
+      </div>
+      <div style="background:linear-gradient(180deg,#0d0a06,#070502); border:1px solid rgba(201,162,39,0.28); padding:28px; text-align:center;">
+        <div class="cinzel" style="font-size:13px; letter-spacing:2px; color:#e8d5a0;">ORACLE &middot; LVL 7</div>
+        <div style="margin-top:12px; height:6px; border-radius:3px; background:rgba(201,162,39,0.15); overflow:hidden;">
+          <div style="width:64%; height:100%; background:linear-gradient(90deg,#8a7a52,#e6c34d);"></div>
+        </div>
+        <div style="margin-top:8px; font-size:12px; color:#6f6034;">640 / 1000 XP to Sage</div>
+      </div>
+    </div>
+
+    <div id="3c" style="width:340px;">
+      <div class="cinzel" style="color:#e6c34d; font-size:12px; letter-spacing:2px; margin-bottom:10px; display:flex; align-items:center; gap:8px;">
+        <span style="background:#e6c34d; color:#1a1a1a; border-radius:3px; padding:2px 7px; font-weight:600;">3c</span>
+        Rare "critical" outcome
+      </div>
+      <div style="background:linear-gradient(180deg,#0d0a06,#070502); border:2px solid #e6c34d; padding:28px; text-align:center; box-shadow:0 0 30px rgba(230,195,77,0.35);">
+        <div style="width:90px; height:90px; margin:0 auto; border-radius:50%; background:radial-gradient(circle at 35% 30%, #fff2c9, #e6c34d 70%); box-shadow:0 0 40px rgba(230,195,77,0.7);"></div>
+        <div class="cinzel" style="margin-top:14px; font-size:12px; letter-spacing:3px; color:#e6c34d;">&#10022; GOLDEN FORTUNE &#10022;</div>
+        <div style="margin-top:6px; font-style:italic; font-size:15px; color:#f2e2ab;">"Rare — fortune smiles rarely this wide."</div>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="3d-wrap" style="display:flex; gap:40px; flex-wrap:wrap; align-items:flex-start;">
+
+    <div id="3d" style="width:340px;">
+      <div class="cinzel" style="color:#e6c34d; font-size:12px; letter-spacing:2px; margin-bottom:10px; display:flex; align-items:center; gap:8px;">
+        <span style="background:#e6c34d; color:#1a1a1a; border-radius:3px; padding:2px 7px; font-weight:600;">3d</span>
+        Cast SFX toggle
+      </div>
+      <div style="background:linear-gradient(180deg,#0d0a06,#070502); border:1px solid rgba(201,162,39,0.28); padding:28px; text-align:center;">
+        <div style="display:flex; align-items:center; justify-content:center; gap:10px;">
+          <span style="font-size:18px; color:#e6c34d;">&#9835;</span>
+          <span class="cinzel" style="font-size:12px; letter-spacing:2px; color:#e8d5a0;">SOUND ON</span>
+          <div style="width:34px; height:18px; border-radius:9px; background:#c9a227; position:relative;">
+            <div style="width:14px; height:14px; border-radius:50%; background:#0d0a06; position:absolute; top:2px; right:2px;"></div>
+          </div>
+        </div>
+        <div style="margin-top:14px; font-size:12px; color:#6f6034; font-style:italic;">Coin clink on cast, chime on a win.</div>
+      </div>
+    </div>
+
+    <div id="3e" style="width:340px;">
+      <div class="cinzel" style="color:#e6c34d; font-size:12px; letter-spacing:2px; margin-bottom:10px; display:flex; align-items:center; gap:8px;">
+        <span style="background:#e6c34d; color:#1a1a1a; border-radius:3px; padding:2px 7px; font-weight:600;">3e</span>
+        Achievement toast
+      </div>
+      <div style="background:linear-gradient(180deg,#0d0a06,#070502); border:1px solid rgba(201,162,39,0.28); padding:28px; text-align:center; position:relative; min-height:100px;">
+        <div style="display:inline-flex; align-items:center; gap:10px; background:#1a1608; border:1px solid #c9a227; padding:10px 18px; border-radius:8px;">
+          <span style="font-size:20px;">&#127942;</span>
+          <div style="text-align:left;">
+            <div class="cinzel" style="font-size:11px; letter-spacing:1px; color:#e6c34d;">ACHIEVEMENT UNLOCKED</div>
+            <div style="font-size:13px; color:#e8d5a0;">First Offering Given</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="3f" style="width:340px;">
+      <div class="cinzel" style="color:#e6c34d; font-size:12px; letter-spacing:2px; margin-bottom:10px; display:flex; align-items:center; gap:8px;">
+        <span style="background:#e6c34d; color:#1a1a1a; border-radius:3px; padding:2px 7px; font-weight:600;">3f</span>
+        Win particle burst
+      </div>
+      <div style="background:linear-gradient(180deg,#0d0a06,#070502); border:1px solid rgba(201,162,39,0.28); padding:28px; text-align:center;">
+        <div style="height:120px; display:flex; align-items:center; justify-content:center;">
+          {{ burstCoin }}
+        </div>
+        <button onClick="{{ playBurst }}" class="cinzel" style="margin-top:8px; padding:10px 22px; background:rgba(201,162,39,0.06); border:1px solid #c9a227; color:#e8d5a0; font-size:11px; letter-spacing:2px; cursor:pointer;">
+          {{ burstButtonLabel }}
+        </button>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="3g-wrap" style="display:flex; gap:40px; flex-wrap:wrap; align-items:flex-start;">
+    <div id="3g" style="width:460px;">
+      <div class="cinzel" style="color:#e6c34d; font-size:12px; letter-spacing:2px; margin-bottom:10px; display:flex; align-items:center; gap:8px;">
+        <span style="background:#e6c34d; color:#1a1a1a; border-radius:3px; padding:2px 7px; font-weight:600;">3g</span>
+        Session history strip
+      </div>
+      <div style="background:linear-gradient(180deg,#0d0a06,#070502); border:1px solid rgba(201,162,39,0.28); padding:24px 28px;">
+        <div class="cinzel" style="font-size:10px; letter-spacing:2px; color:#6f6034; margin-bottom:12px;">RECENT CASTS</div>
+        <div style="display:flex; gap:10px;">
+          <div style="width:34px; height:34px; border-radius:50%; background:radial-gradient(circle at 35% 30%,#e8d5a0,#8a7a52 70%);" title="Heads"></div>
+          <div style="width:34px; height:34px; border-radius:50%; background:radial-gradient(circle at 35% 30%,#5a4f38,#2a2418 70%);" title="Tails"></div>
+          <div style="width:34px; height:34px; border-radius:50%; background:radial-gradient(circle at 35% 30%,#e8d5a0,#8a7a52 70%);" title="Heads"></div>
+          <div style="width:34px; height:34px; border-radius:50%; background:radial-gradient(circle at 35% 30%,#e8d5a0,#8a7a52 70%);" title="Heads"></div>
+          <div style="width:34px; height:34px; border-radius:50%; background:radial-gradient(circle at 35% 30%,#fff2c9,#e6c34d 70%); box-shadow:0 0 12px rgba(230,195,77,0.6);" title="Golden"></div>
+        </div>
+      </div>
+      <div style="margin-top:10px; font-size:13px; color:#999;">Last 5 casts as small coin icons — results feel collected, not disposable.</div>
+    </div>
+  </section>
+
+  <section id="2a-wrap" style="display:flex; gap:40px; flex-wrap:wrap; align-items:flex-start;">
+    <div id="2a" style="width:380px;">
+      <div class="cinzel" style="color:#e6c34d; font-size:12px; letter-spacing:2px; margin-bottom:10px; display:flex; align-items:center; gap:8px;">
+        <span style="background:#e6c34d; color:#1a1a1a; border-radius:3px; padding:2px 7px; font-weight:600;">2a</span>
+        Coin flip animation demo
+      </div>
+      <div style="background:linear-gradient(180deg,#0d0a06,#070502); border:1px solid rgba(201,162,39,0.28); padding:36px 28px; text-align:center; perspective:900px;">
+        <div style="height:140px; display:flex; align-items:center; justify-content:center;">
+          {{ coin }}
+        </div>
+        <div class="cinzel" style="min-height:60px; font-size:20px; letter-spacing:2px; color:#e8d5a0; margin-top:10px;">
+          {{ resultLabel }}
+        </div>
+        <button onClick="{{ flip }}" class="cinzel" style="margin-top:20px; padding:12px 28px; background:rgba(201,162,39,0.06); border:1px solid #c9a227; color:#e8d5a0; font-size:12px; letter-spacing:2px; cursor:pointer;">
+          {{ buttonLabel }}
+        </button>
+      </div>
+      <div style="margin-top:10px; font-size:13px; color:#999; line-height:1.5;">
+        Real 3D toss: multiple Y-axis spins + arc/scale, settles flat on heads or tails, then text rises in staggered.
+      </div>
+    </div>
+
+    <div id="2b" style="width:380px;">
+      <div class="cinzel" style="color:#e6c34d; font-size:12px; letter-spacing:2px; margin-bottom:10px; display:flex; align-items:center; gap:8px;">
+        <span style="background:#e6c34d; color:#1a1a1a; border-radius:3px; padding:2px 7px; font-weight:600;">2b</span>
+        Reveal text stagger
+      </div>
+      <div style="background:linear-gradient(180deg,#0d0a06,#070502); border:1px solid rgba(201,162,39,0.28); padding:36px 28px; text-align:center;">
+        <div style="height:140px;">{{ revealBlock }}</div>
+        <button onClick="{{ playReveal }}" class="cinzel" style="margin-top:20px; padding:12px 28px; background:rgba(201,162,39,0.06); border:1px solid #c9a227; color:#e8d5a0; font-size:12px; letter-spacing:2px; cursor:pointer;">
+          {{ revealButtonLabel }}
+        </button>
+      </div>
+      <div style="margin-top:10px; font-size:13px; color:#999; line-height:1.5;">
+        Outcome word, divider, and quote fade/rise in one after another instead of appearing all at once.
+      </div>
+    </div>
+
+    <div id="2c" style="width:380px;">
+      <div class="cinzel" style="color:#e6c34d; font-size:12px; letter-spacing:2px; margin-bottom:10px; display:flex; align-items:center; gap:8px;">
+        <span style="background:#e6c34d; color:#1a1a1a; border-radius:3px; padding:2px 7px; font-weight:600;">2c</span>
+        Ambient idle glow
+      </div>
+      <div style="background:linear-gradient(180deg,#0d0a06,#070502); border:1px solid rgba(201,162,39,0.28); padding:36px 28px; text-align:center; overflow:hidden;">
+        <div style="height:140px; display:flex; align-items:center; justify-content:center;">
+          {{ idleCoin }}
+        </div>
+        <div class="cinzel" style="font-size:13px; color:#8a7a52; margin-top:10px;">Ask Fortuna your question</div>
+      </div>
+      <div style="margin-top:10px; font-size:13px; color:#999; line-height:1.5;">
+        Slow pulsing glow behind the coin on the Ask screen — signals life before the user interacts.
+      </div>
+    </div>
+
+    <div id="2d" style="width:380px;">
+      <div class="cinzel" style="color:#e6c34d; font-size:12px; letter-spacing:2px; margin-bottom:10px; display:flex; align-items:center; gap:8px;">
+        <span style="background:#e6c34d; color:#1a1a1a; border-radius:3px; padding:2px 7px; font-weight:600;">2d</span>
+        Tip button confirm burst
+      </div>
+      <div style="background:linear-gradient(180deg,#0d0a06,#070502); border:1px solid rgba(201,162,39,0.28); padding:36px 28px; text-align:center;">
+        <div style="height:140px; display:flex; align-items:center; justify-content:center;">
+          {{ tipButton }}
+        </div>
+      </div>
+      <div style="margin-top:10px; font-size:13px; color:#999; line-height:1.5;">
+        Button morphs into a checkmark burst on successful tip send, then settles into a "Sent" state.
+      </div>
+    </div>
+  </section>
+
+  <section id="1a-wrap" style="display:flex; gap:40px; flex-wrap:wrap; align-items:flex-start;">
+
+    <div id="1a" style="width:380px;">
+      <div class="cinzel" style="color:#e6c34d; font-size:12px; letter-spacing:2px; margin-bottom:10px; display:flex; align-items:center; gap:8px;">
+        <span style="background:#e6c34d; color:#1a1a1a; border-radius:3px; padding:2px 7px; font-weight:600;">1a</span>
+        CURRENT — Reveal screen
+      </div>
+      <div style="background:linear-gradient(180deg,#0d0a06,#070502); border:1px solid rgba(201,162,39,0.28); padding:36px 28px; text-align:center;">
+        <div class="cinzel" style="font-size:10px; letter-spacing:4px; text-transform:uppercase; color:#8a7a52;">The coin of Fortuna</div>
+        <div style="width:120px; height:120px; margin:28px auto; border-radius:50%; background:radial-gradient(circle at 35% 30%, #e8d5a0, #8a7a52 70%); box-shadow:0 0 44px rgba(230,195,77,0.4);"></div>
+        <div class="cinzel" style="font-size:22px; letter-spacing:3px; color:#e8d5a0; line-height:1.4;">HEADS<br>FORTUNE FAVOURS YOU</div>
+        <div style="width:60px; height:1px; background:rgba(201,162,39,0.5); margin:22px auto;"></div>
+        <div style="font-style:italic; font-size:22px; color:#cbb884; max-width:280px; margin:0 auto;">"What you seek turns toward you."</div>
+
+        <div style="margin-top:36px; padding-top:22px; border-top:1px solid rgba(201,162,39,0.25);">
+          <div class="cinzel" style="font-size:10px; letter-spacing:3px; text-transform:uppercase; color:#8a7a52;">Leave an offering (optional)</div>
+          <div style="display:flex; justify-content:center; gap:8px; margin-top:12px;">
+            <div style="border:1px solid #c9a227; color:#e8d5a0; padding:6px 12px; font-size:13px;" class="cinzel">1 USDC</div>
+            <div style="border:1px solid rgba(201,162,39,0.3); color:#8a7a52; padding:6px 12px; font-size:13px;" class="cinzel">5 USDC</div>
+            <div style="border:1px solid rgba(201,162,39,0.3); color:#8a7a52; padding:6px 12px; font-size:13px;" class="cinzel">10 USDC</div>
+          </div>
+          <div style="margin-top:14px; font-size:14px; color:#6f6034; font-style:italic;">Connect your wallet to send an offering.</div>
+        </div>
+      </div>
+      <div style="margin-top:10px; font-size:13px; color:#999; line-height:1.5;">
+        Only 3 fixed tip tiers, no custom amount. Wallet requirement appears only now — late in the flow.
+      </div>
+    </div>
+
+    <div id="1b" style="width:380px;">
+      <div class="cinzel" style="color:#e6c34d; font-size:12px; letter-spacing:2px; margin-bottom:10px; display:flex; align-items:center; gap:8px;">
+        <span style="background:#e6c34d; color:#1a1a1a; border-radius:3px; padding:2px 7px; font-weight:600;">1b</span>
+        IMPROVED — custom tip + softer copy
+      </div>
+      <div style="background:linear-gradient(180deg,#0d0a06,#070502); border:1px solid rgba(201,162,39,0.28); padding:36px 28px; text-align:center;">
+        <div class="cinzel" style="font-size:10px; letter-spacing:4px; text-transform:uppercase; color:#8a7a52;">The coin of Fortuna</div>
+        <div style="width:120px; height:120px; margin:28px auto; border-radius:50%; background:radial-gradient(circle at 35% 30%, #e8d5a0, #8a7a52 70%); box-shadow:0 0 44px rgba(230,195,77,0.4);"></div>
+        <div class="cinzel" style="font-size:22px; letter-spacing:3px; color:#e8d5a0; line-height:1.4;">HEADS<br>FORTUNE FAVOURS YOU</div>
+        <div style="width:60px; height:1px; background:rgba(201,162,39,0.5); margin:22px auto;"></div>
+        <div style="font-style:italic; font-size:22px; color:#cbb884; max-width:280px; margin:0 auto;">"What you seek turns toward you."</div>
+
+        <div style="margin-top:36px; padding-top:22px; border-top:1px solid rgba(201,162,39,0.25);">
+          <div class="cinzel" style="font-size:10px; letter-spacing:3px; text-transform:uppercase; color:#8a7a52;">Leave an offering (optional)</div>
+          <div style="display:flex; justify-content:center; gap:8px; margin-top:12px; flex-wrap:wrap;">
+            <div style="border:1px solid #c9a227; color:#e8d5a0; padding:6px 12px; font-size:13px;" class="cinzel">1 USDC</div>
+            <div style="border:1px solid rgba(201,162,39,0.3); color:#8a7a52; padding:6px 12px; font-size:13px;" class="cinzel">5 USDC</div>
+            <div style="border:1px solid rgba(201,162,39,0.3); color:#8a7a52; padding:6px 12px; font-size:13px;" class="cinzel">10 USDC</div>
+            <div style="border:1px dashed rgba(201,162,39,0.5); color:#cbb884; padding:6px 12px; font-size:13px;" class="cinzel">CUSTOM</div>
+          </div>
+          <button style="margin-top:16px; width:100%; padding:12px; background:rgba(201,162,39,0.06); border:1px solid #c9a227; color:#e8d5a0; font-size:12px; letter-spacing:2px;" class="cinzel">CONNECT WALLET TO OFFER</button>
+        </div>
+      </div>
+      <div style="margin-top:10px; font-size:13px; color:#999; line-height:1.5;">
+        Adds a custom-amount pill and turns the disabled state into an actionable "Connect wallet" CTA instead of a dead-end sentence.
+      </div>
+    </div>
+
+  </section>
+
+  <section id="1c-wrap" style="display:flex; gap:40px; flex-wrap:wrap; align-items:flex-start;">
+
+    <div id="1c" style="width:380px;">
+      <div class="cinzel" style="color:#e6c34d; font-size:12px; letter-spacing:2px; margin-bottom:10px; display:flex; align-items:center; gap:8px;">
+        <span style="background:#e6c34d; color:#1a1a1a; border-radius:3px; padding:2px 7px; font-weight:600;">1c</span>
+        Loss screen — softened framing
+      </div>
+      <div style="background:linear-gradient(180deg,#0d0a06,#070502); border:1px solid rgba(201,162,39,0.28); padding:36px 28px; text-align:center;">
+        <div style="width:120px; height:120px; margin:0 auto 28px; border-radius:50%; background:radial-gradient(circle at 35% 30%, #5a4f38, #2a2418 70%); box-shadow:0 0 30px rgba(154,138,94,0.25);"></div>
+        <div class="cinzel" style="font-size:22px; letter-spacing:3px; color:#9a8a5e; line-height:1.4;">TAILS<br>FORTUNE TURNS AWAY</div>
+        <div style="width:60px; height:1px; background:rgba(201,162,39,0.3); margin:22px auto;"></div>
+        <div style="font-style:italic; font-size:22px; color:#8a7a52; max-width:280px; margin:0 auto;">"The wheel turns on. Ask again whenever you like."</div>
+        <div style="margin-top:36px; padding-top:22px; border-top:1px solid rgba(201,162,39,0.25); font-size:14px; color:#6f6034; font-style:italic;">
+          No tip prompt on a loss — offerings only shown after a win.
+        </div>
+      </div>
+      <div style="margin-top:10px; font-size:13px; color:#999; line-height:1.5;">
+        Currently the tip block still appears after a loss with the same "leave an offering" copy — jarring right after "fortune turns away." Hiding/rewording it on loss (shown here) reads more coherent.
+      </div>
+    </div>
+
+    <div id="1d" style="width:380px;">
+      <div class="cinzel" style="color:#e6c34d; font-size:12px; letter-spacing:2px; margin-bottom:10px; display:flex; align-items:center; gap:8px;">
+        <span style="background:#e6c34d; color:#1a1a1a; border-radius:3px; padding:2px 7px; font-weight:600;">1d</span>
+        Clickable step nav
+      </div>
+      <div style="background:linear-gradient(180deg,#0d0a06,#070502); border:1px solid rgba(201,162,39,0.28); padding:36px 28px;">
+        <div class="cinzel" style="display:flex; justify-content:center; gap:10px; font-size:10px; letter-spacing:3px; text-transform:uppercase; margin-bottom:22px;">
+          <span style="color:#6f6034; border-bottom:1px solid transparent; cursor:pointer;">01 Ask</span>
+          <span style="color:#6f6034;">—</span>
+          <span style="color:#e8d5a0; border-bottom:1px solid #e8d5a0; padding-bottom:2px;">02 Cast</span>
+          <span style="color:#6f6034;">—</span>
+          <span style="color:#6f6034;">03 Reveal</span>
+        </div>
+        <div style="text-align:center; font-style:italic; color:#cbb884; font-size:16px;">"Will I find what I seek?"</div>
+        <div style="margin-top:24px; text-align:center; font-size:13px; color:#8a7a52; font-style:italic;">Fortuna is ready to cast her coin.</div>
+      </div>
+      <div style="margin-top:10px; font-size:13px; color:#999; line-height:1.5;">
+        Underline + hover cursor on completed steps (e.g. "01 Ask") signals they're clickable to go back, instead of the current static, non-interactive-looking labels.
+      </div>
+    </div>
+
+  </section>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    phase: 'idle', result: null,
+    revealPhase: 'hidden',
+    tipPhase: 'idle',
+    burstPhase: 'idle',
+    wheelSpinning: false,
+    wheelRotation: 0,
+    wheelResult: '',
+    divineActive: false
+  };
+
+  spinWheel = () => {
+    if (this.state.wheelSpinning) return;
+    const labels = ['Great Fortune','Good Fortune','Favorable Winds','Uncertain','Delay','Misfortune','Fate Changes','Destiny Calls'];
+    const idx = Math.floor(Math.random() * labels.length);
+    const segAngle = 360 / labels.length;
+    const target = 360 * 5 + (360 - (idx * segAngle + segAngle / 2));
+    this.setState({ wheelSpinning: true, wheelRotation: target, wheelResult: '' });
+    setTimeout(() => {
+      this.setState({ wheelSpinning: false, wheelResult: labels[idx].toUpperCase() });
+    }, 2200);
+  };
+
+  triggerDivine = () => {
+    if (this.state.divineActive) return;
+    this.setState({ divineActive: true });
+    setTimeout(() => this.setState({ divineActive: false }), 3000);
+  };
+
+  playBurst = () => {
+    if (this.state.burstPhase === 'bursting') return;
+    this.setState({ burstPhase: 'bursting' });
+    setTimeout(() => this.setState({ burstPhase: 'idle' }), 1400);
+  };
+
+  playReveal = () => {
+    if (this.state.revealPhase === 'playing') return;
+    this.setState({ revealPhase: 'playing' });
+    setTimeout(() => this.setState({ revealPhase: 'word' }), 100);
+    setTimeout(() => this.setState({ revealPhase: 'divider' }), 500);
+    setTimeout(() => this.setState({ revealPhase: 'quote' }), 850);
+    setTimeout(() => this.setState({ revealPhase: 'done' }), 1400);
+  };
+
+  playTip = () => {
+    if (this.state.tipPhase !== 'idle') return;
+    this.setState({ tipPhase: 'sending' });
+    setTimeout(() => this.setState({ tipPhase: 'confirmed' }), 900);
+    setTimeout(() => this.setState({ tipPhase: 'sent' }), 1700);
+    setTimeout(() => this.setState({ tipPhase: 'idle' }), 3200);
+  };
+
+  flip = () => {
+    if (this.state.phase === 'flipping') return;
+    const result = Math.random() < 0.5 ? 'heads' : 'tails';
+    this.setState({ phase: 'flipping', result: null });
+    setTimeout(() => {
+      this.setState({ phase: 'landed', result });
+    }, 1600);
+  };
+
+  renderVals() {
+    const { phase, result } = this.state;
+    const spins = 5;
+    const finalY = result === 'tails' ? 180 : 0;
+    const totalDeg = spins * 360 + finalY;
+
+    const coinStyle = {
+      width: 120,
+      height: 120,
+      borderRadius: '50%',
+      position: 'relative',
+      transformStyle: 'preserve-3d',
+      background: 'radial-gradient(circle at 35% 30%, #e8d5a0, #8a7a52 70%)',
+      boxShadow: '0 0 44px rgba(230,195,77,0.4)',
+      transition: phase === 'flipping' ? 'transform 1.6s cubic-bezier(.2,.8,.3,1), scale 1.6s ease' : 'none',
+      transform: phase === 'flipping'
+        ? `translateY(-30px) rotateY(${totalDeg}deg) scale(1.15)`
+        : phase === 'landed'
+          ? `rotateY(${finalY}deg) scale(1)`
+          : 'rotateY(0deg) scale(1)',
+      animation: phase === 'idle' ? 'none' : 'none'
+    };
+
+    const coin = React.createElement('div', { style: coinStyle },
+      React.createElement('div', {
+        style: { position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center',
+          fontFamily: 'Cinzel,serif', fontSize: 11, letterSpacing: 2, color: '#4a3f1e', backfaceVisibility: 'hidden' }
+      }, 'HEADS'),
+      React.createElement('div', {
+        style: { position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center',
+          fontFamily: 'Cinzel,serif', fontSize: 11, letterSpacing: 2, color: '#4a3f1e', backfaceVisibility: 'hidden',
+          transform: 'rotateY(180deg)' }
+      }, 'TAILS')
+    );
+
+    let resultLabel = '\u00A0';
+    if (phase === 'landed') {
+      resultLabel = result === 'heads' ? 'FORTUNE FAVOURS YOU' : 'FORTUNE TURNS AWAY';
+    } else if (phase === 'flipping') {
+      resultLabel = 'The coin is cast...';
+    }
+
+    // --- 2b reveal stagger ---
+    const rp = this.state.revealPhase;
+    const fadeStep = (active, delayed) => ({
+      opacity: active ? 1 : 0,
+      transform: active ? 'translateY(0)' : 'translateY(14px)',
+      transition: 'opacity 0.5s ease, transform 0.5s ease'
+    });
+    const wordOn = ['word','divider','quote','done'].includes(rp);
+    const dividerOn = ['divider','quote','done'].includes(rp);
+    const quoteOn = ['quote','done'].includes(rp);
+
+    const revealBlock = React.createElement('div', { style: { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 14, paddingTop: 10 } },
+      React.createElement('div', { style: { fontFamily: 'Cinzel,serif', fontSize: 22, letterSpacing: 3, color: '#e8d5a0', ...fadeStep(wordOn) } }, 'FORTUNE FAVOURS YOU'),
+      React.createElement('div', { style: { width: 60, height: 1, background: 'rgba(201,162,39,0.5)', ...fadeStep(dividerOn) } }),
+      React.createElement('div', { style: { fontStyle: 'italic', fontSize: 18, color: '#cbb884', maxWidth: 280, ...fadeStep(quoteOn) } }, '"What you seek turns toward you."')
+    );
+
+    // --- 2c idle glow ---
+    const idleCoin = React.createElement('div', { style: { position: 'relative', width: 120, height: 120 } },
+      React.createElement('div', {
+        style: {
+          position: 'absolute', inset: -30, borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(230,195,77,0.35), transparent 70%)',
+          animation: 'fortunaPulse 3s ease-in-out infinite'
+        }
+      }),
+      React.createElement('div', {
+        style: {
+          position: 'absolute', inset: 0, borderRadius: '50%',
+          background: 'radial-gradient(circle at 35% 30%, #e8d5a0, #8a7a52 70%)',
+          boxShadow: '0 0 30px rgba(230,195,77,0.3)'
+        }
+      })
+    );
+
+    // --- 2d tip button ---
+    const tp = this.state.tipPhase;
+    let tipLabel = '5 USDC — SEND OFFERING';
+    let tipBg = 'rgba(201,162,39,0.06)';
+    let tipBorder = '#c9a227';
+    let tipColor = '#e8d5a0';
+    if (tp === 'sending') { tipLabel = 'CONFIRM IN WALLET...'; }
+    if (tp === 'confirmed') { tipLabel = '\u2713 CONFIRMED'; tipBg = 'rgba(201,162,39,0.18)'; }
+    if (tp === 'sent') { tipLabel = 'OFFERING SENT'; tipBg = 'rgba(90,140,90,0.15)'; tipBorder = '#7ea87e'; tipColor = '#bfe0bf'; }
+
+    const tipButton = React.createElement('button', {
+      onClick: this.playTip,
+      style: {
+        fontFamily: 'Cinzel,serif', padding: '14px 26px', background: tipBg, border: '1px solid ' + tipBorder,
+        color: tipColor, fontSize: 12, letterSpacing: 2, cursor: 'pointer',
+        transition: 'all 0.4s ease', transform: tp === 'confirmed' ? 'scale(1.08)' : 'scale(1)'
+      }
+    }, tipLabel);
+
+    // --- 4c wheel ---
+    const segments = ['Great Fortune','Good Fortune','Favorable Winds','Uncertain','Delay','Misfortune','Fate Changes','Destiny Calls'];
+    const segAngle = 360 / segments.length;
+    const segColors = ['#e6c34d','#8a7a52','#c9a227','#5a4f38','#8a7a52','#3a3010','#c9a227','#8a7a52'];
+    const wedges = segments.map((s, i) => React.createElement('div', {
+      key: i,
+      style: {
+        position: 'absolute', inset: 0,
+        clipPath: 'polygon(50% 50%, 50% 0%, 100% 0%)',
+        transform: `rotate(${i * segAngle}deg)`,
+        background: segColors[i]
+      }
+    }));
+    const wheel = React.createElement('div', { style: { position: 'relative', width: 160, height: 160 } },
+      React.createElement('div', {
+        style: {
+          width: 160, height: 160, borderRadius: '50%', position: 'relative', overflow: 'hidden',
+          border: '3px solid #e6c34d', boxShadow: '0 0 30px rgba(230,195,77,0.35)',
+          transform: `rotate(${this.state.wheelRotation}deg)`,
+          transition: this.state.wheelSpinning ? 'transform 2.2s cubic-bezier(.15,.8,.25,1)' : 'none'
+        }
+      }, ...wedges),
+      React.createElement('div', {
+        style: {
+          position: 'absolute', top: -10, left: '50%', transform: 'translateX(-50%)',
+          width: 0, height: 0, borderLeft: '8px solid transparent', borderRight: '8px solid transparent',
+          borderTop: '14px solid #e8d5a0'
+        }
+      })
+    );
+
+    // --- 3f particle burst ---
+    const bp = this.state.burstPhase;
+    const particles = [];
+    if (bp === 'bursting') {
+      const n = 10;
+      for (let i = 0; i < n; i++) {
+        const angle = (360 / n) * i;
+        particles.push(React.createElement('div', {
+          key: i,
+          style: {
+            position: 'absolute', top: '50%', left: '50%', width: 6, height: 6, borderRadius: '50%',
+            background: '#e6c34d', boxShadow: '0 0 6px #e6c34d',
+            transform: `translate(-50%,-50%) rotate(${angle}deg) translate(60px)`,
+            opacity: 0,
+            animation: 'fortunaBurst 0.9s ease-out forwards'
+          }
+        }));
+      }
+    }
+    const burstCoin = React.createElement('div', { style: { position: 'relative', width: 90, height: 90 } },
+      React.createElement('div', {
+        style: {
+          width: 90, height: 90, borderRadius: '50%',
+          background: 'radial-gradient(circle at 35% 30%, #e8d5a0, #8a7a52 70%)',
+          boxShadow: bp === 'bursting' ? '0 0 50px rgba(230,195,77,0.8)' : '0 0 20px rgba(230,195,77,0.3)',
+          transition: 'box-shadow 0.3s ease'
+        }
+      }),
+      ...particles
+    );
+
+    return {
+      coin,
+      resultLabel,
+      buttonLabel: phase === 'flipping' ? 'CASTING...' : phase === 'landed' ? 'CAST AGAIN' : 'CAST THE COIN',
+      flip: this.flip,
+      revealBlock,
+      playReveal: this.playReveal,
+      revealButtonLabel: rp === 'playing' ? 'REVEALING...' : rp === 'done' ? 'REPLAY' : 'PLAY REVEAL',
+      idleCoin,
+      tipButton,
+      burstCoin,
+      playBurst: this.playBurst,
+      burstButtonLabel: bp === 'bursting' ? 'WINNING...' : 'TRIGGER WIN BURST',
+      wheel,
+      spinWheel: this.spinWheel,
+      wheelButtonLabel: this.state.wheelSpinning ? 'SPINNING...' : 'SPIN THE WHEEL',
+      wheelResult: this.state.wheelResult,
+      divineBg: this.state.divineActive ? 'radial-gradient(circle, #f2e2ab, #e6c34d)' : 'linear-gradient(180deg,#0d0a06,#070502)',
+      divineLabel: this.state.divineActive ? 'FORTUNA HERSELF HAS APPEARED' : 'THE WHEEL IS STILL',
+      divineSub: this.state.divineActive ? '"You are seen, mortal. Ask, and it shall be granted."' : 'A rare event may interrupt any session.',
+      divineButtonLabel: this.state.divineActive ? 'FADING...' : 'SIMULATE RARE EVENT',
+      triggerDivine: this.triggerDivine
+    };
+  }
+}
+</script>
+</body>
+</html>
