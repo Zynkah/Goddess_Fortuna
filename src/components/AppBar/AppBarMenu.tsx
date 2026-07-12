@@ -3,6 +3,7 @@ import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import useFortunaProgressStore from '../../stores/useFortunaProgressStore'
 import { StatsModal } from '../Modals/StatsModal'
 import { HowItWorksModal } from '../Modals/HowItWorksModal'
+import { AchievementsModal } from '../Modals/AchievementsModal'
 import useEscapeKey from '../../hooks/useEscapeKey'
 import { APPBAR_ICON_BUTTON_CLASS, APPBAR_PANEL_CLASS } from './uiTokens'
 
@@ -13,6 +14,7 @@ export const AppBarMenu = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [isStatsOpen, setIsStatsOpen] = useState(false)
   const [isHowItWorksOpen, setIsHowItWorksOpen] = useState(false)
+  const [isAchievementsOpen, setIsAchievementsOpen] = useState(false)
   const { soundEnabled, setSoundEnabled } = useFortunaProgressStore()
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -94,12 +96,24 @@ export const AppBarMenu = () => {
             >
               <span>How it works</span>
             </button>
+            <button
+              type='button'
+              role='menuitem'
+              onClick={() => {
+                setIsOpen(false)
+                setIsAchievementsOpen(true)
+              }}
+              className={MENU_ROW_CLASS}
+            >
+              <span>Achievements</span>
+            </button>
           </div>
         </div>
       </div>
 
       <StatsModal isOpen={isStatsOpen} onClose={() => setIsStatsOpen(false)} />
       <HowItWorksModal isOpen={isHowItWorksOpen} onClose={() => setIsHowItWorksOpen(false)} />
+      <AchievementsModal isOpen={isAchievementsOpen} onClose={() => setIsAchievementsOpen(false)} />
     </div>
   )
 }

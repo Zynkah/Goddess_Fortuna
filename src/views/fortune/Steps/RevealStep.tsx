@@ -21,6 +21,7 @@ import useFortunaProgressStore from "../../../stores/useFortunaProgressStore";
 import { CastDetail } from "./CastStep";
 import { WHEEL_SEGMENTS } from "../FortuneWheel/data";
 import { getWheelTargetRotation } from "../FortuneWheel/GetWheelTargetRotation";
+import { ALL_WHEEL_TIERS } from "../../../utils/fortunaWheelTiers";
 
 interface RevealStepProps {
   isWin: boolean | null;
@@ -200,7 +201,10 @@ export const RevealStep = ({ isWin, isGolden, detail, onReset }: RevealStepProps
               isWin ? "text-fortuna-gold-light" : "text-[#9a8a5e]"
             }`}
           >
-            {detail.segment.toUpperCase()}
+            {(() => {
+              const landedTier = ALL_WHEEL_TIERS.find((t) => t.id === detail.tierId);
+              return `${landedTier?.emoji ?? ""} ${(landedTier?.label ?? detail.segment).toUpperCase()}`;
+            })()}
           </div>
           <div
             className={`fortuna-reveal-up-2 mx-auto my-6 h-px w-[60px] ${
@@ -212,7 +216,7 @@ export const RevealStep = ({ isWin, isGolden, detail, onReset }: RevealStepProps
               isWin ? "text-fortuna-gold-soft" : "text-fortuna-gold-dimmer"
             }`}
           >
-            {isWin ? "Fortune leans your way." : "The wheel turns on. Ask again whenever you like."}
+            "{detail.phrase}"
           </div>
         </div>
       )}

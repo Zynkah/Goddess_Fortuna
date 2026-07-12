@@ -1,13 +1,7 @@
 import { WHEEL_SEGMENTS } from "./data";
 
 export const SEGMENT_ANGLE = 360 / WHEEL_SEGMENTS.length;
-export const SEGMENT_COLORS = [
-  "#e6c34d",
-  "#8a7a52",
-  "#c9a227",
-  "#5a4f38",
-  "#8a7a52",
-  "#3a3010",
-  "#c9a227",
-  "#8a7a52",
-];
+
+// Alternating light/deep gold, echoing the metal wheel in Fortuna's portrait
+// rather than the old muddy pie-chart palette.
+export const SEGMENT_COLORS = WHEEL_SEGMENTS.map((_, i) => (i % 2 === 0 ? "#e8c766" : "#a9822f"));

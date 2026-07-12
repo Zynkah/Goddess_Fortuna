@@ -73,9 +73,14 @@ export const FortuneView: FC = () => {
                   setIsWin(result);
                   setIsGolden(golden);
                   setDetail(castDetail);
-                  useFortunaProgressStore
-                    .getState()
-                    .recordCast({ isWin: result, isGolden: golden, mode: castDetail.mode });
+                  useFortunaProgressStore.getState().recordCast({
+                    isWin: result,
+                    isGolden: golden,
+                    mode: castDetail.mode,
+                    ...(castDetail.mode === "wheel"
+                      ? { wheelTierId: castDetail.tierId, wheelPhrase: castDetail.phrase }
+                      : {}),
+                  });
                   setStep(2);
                 }}
               />

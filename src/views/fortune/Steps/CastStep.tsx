@@ -5,8 +5,14 @@ import { playCastSound, playWheelTickSound, playOracleChimeSound } from "../../.
 import { FortuneWheel } from "../FortuneWheel";
 import { pickOracleOutcome, OraclePhrase } from "../../../utils/fortunaOracle";
 import { pickWheelSegmentIndex } from "../FortuneWheel/PickWheelSegmentIndex";
-import { WHEEL_SEGMENTS } from "../FortuneWheel/data";
 import { getWheelTargetRotation } from "../FortuneWheel/GetWheelTargetRotation";
+import {
+  WHEEL_TIERS,
+  DIVINE_FAVOR_TIER,
+  WHEEL_DIVINE_FAVOR_CHANCE,
+  pickWheelPhrase,
+  WheelTierId,
+} from "../../../utils/fortunaWheelTiers";
 
 const GOLDEN_FORTUNE_CHANCE = 0.08;
 const WHEEL_SPIN_MS = 2200;
@@ -14,7 +20,7 @@ const ORACLE_CONSULT_MS = 1400;
 
 export type CastDetail =
   | { mode: "coin" }
-  | { mode: "wheel"; segment: string }
+  | { mode: "wheel"; segment: string; tierId: WheelTierId; phrase: string }
   | { mode: "oracle"; phrase: string; rating: OraclePhrase["rating"] };
 
 interface CastStepProps {
@@ -37,13 +43,19 @@ export const CastStep = ({ onBack, onCastComplete }: CastStepProps) => {
 
   const handleSpinWheel = () => {
     const index = pickWheelSegmentIndex();
-    const segment = WHEEL_SEGMENTS[index];
+    const tier = WHEEL_TIERS[index];
     playWheelTickSound();
     setWheelSpinning(true);
     setWheelRotation(getWheelTargetRotation(index));
     setTimeout(() => {
-      const isGolden = segment.goldenEligible && Math.random() < GOLDEN_FORTUNE_CHANCE;
-      onCastComplete(segment.isWin, isGolden, { mode: "wheel", segment: segment.label });
+      const isGolden = tier.id === "great-fortune" && Math.random() < WHEEL_DIVINE_FAVOR_CHANCE;
+      const resolvedTier = isGolden ? DIVINE_FAVOR_TIER : tier;
+      onCastComplete(tier.isWin, isGolden, {
+        mode: "wheel",
+        segment: tier.label,
+        tierId: resolvedTier.id,
+        phrase: pickWheelPhrase(resolvedTier),
+      });
     }, WHEEL_SPIN_MS);
   };
 

@@ -10,25 +10,70 @@ export const FortuneWheel = ({ rotation, spinning }: FortuneWheelProps) => {
   return (
     <div className="relative h-[160px] w-[160px]">
       <div
-        className={`h-full w-full overflow-hidden rounded-full border-[3px] border-fortuna-gold ${
+        className={`relative h-full w-full rounded-full border-[3px] border-fortuna-gold ${
           spinning ? "fortuna-wheel--spinning" : "fortuna-wheel"
         }`}
         style={{
-          boxShadow: "0 0 30px rgba(230,195,77,0.35)",
+          boxShadow:
+            "0 0 30px rgba(230,195,77,0.35), inset 0 0 0 2px rgba(255,238,180,0.5), inset 0 0 16px rgba(40,28,8,0.65)",
           transform: `rotate(${rotation}deg)`,
         }}
       >
-        {WHEEL_SEGMENTS.map((segment, i) => (
+        <div className="absolute inset-0 overflow-hidden rounded-full">
+          {WHEEL_SEGMENTS.map((segment, i) => (
+            <div
+              key={segment.label}
+              className="absolute inset-0"
+              style={{
+                clipPath: "polygon(50% 50%, 50% 0%, 100% 0%)",
+                transform: `rotate(${i * SEGMENT_ANGLE}deg)`,
+                background: SEGMENT_COLORS[i],
+              }}
+            />
+          ))}
           <div
-            key={segment.label}
             className="absolute inset-0"
             style={{
-              clipPath: "polygon(50% 50%, 50% 0%, 100% 0%)",
+              background: "radial-gradient(circle at 35% 28%, rgba(255,255,255,0.45), transparent 55%)",
+              mixBlendMode: "soft-light",
+            }}
+          />
+        </div>
+
+        {WHEEL_SEGMENTS.map((segment, i) => (
+          <div
+            key={`spoke-${segment.label}`}
+            className="absolute left-1/2 top-1/2 origin-top rounded-full"
+            style={{
+              width: "3px",
+              height: "50%",
+              marginLeft: "-1.5px",
+              background: "linear-gradient(to bottom, #fff3c4, #8a6a20)",
               transform: `rotate(${i * SEGMENT_ANGLE}deg)`,
-              background: SEGMENT_COLORS[i],
+              boxShadow: "0 0 2px rgba(0,0,0,0.5)",
             }}
           />
         ))}
+
+        {WHEEL_SEGMENTS.map((segment, i) => (
+          <div
+            key={`knob-${segment.label}`}
+            className="absolute left-1/2 top-1/2 h-[9px] w-[9px] rounded-full border border-fortuna-gold-light"
+            style={{
+              background: "radial-gradient(circle at 35% 30%, #fff3c4, #a9822f 70%)",
+              boxShadow: "0 0 4px rgba(0,0,0,0.5)",
+              transform: `translate(-50%, -50%) rotate(${i * SEGMENT_ANGLE}deg) translateY(-83px)`,
+            }}
+          />
+        ))}
+
+        <div
+          className="absolute left-1/2 top-1/2 h-[36px] w-[36px] -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-fortuna-gold-light"
+          style={{
+            background: "radial-gradient(circle at 35% 30%, #fff3c4 0%, #d9b34e 45%, #7a5f1e 100%)",
+            boxShadow: "inset 0 0 6px rgba(40,28,8,0.7), 0 0 6px rgba(0,0,0,0.4)",
+          }}
+        />
       </div>
       <div
         className="absolute -top-[10px] left-1/2 -translate-x-1/2"
