@@ -4,9 +4,11 @@ import { notify } from "../utils/notifications";
 import { getLocalDateKey, getPreviousDateKey } from "../utils/fortunaDates";
 import { XP_PER_CAST, XP_BONUS_WIN, XP_BONUS_GOLDEN } from "../utils/fortunaLeveling";
 import { evaluateAchievements } from "../utils/fortunaAchievements";
+import { WheelTierId, wheelPhraseKey } from "../utils/fortunaWheelTiers";
+import { OracleTierId, oraclePhraseKey } from "../utils/fortunaOracleTiers";
 
 export interface FortunaHistoryEntry {
-  result: "heads" | "tails" | "golden";
+  result: "heads" | "tails" | "golden" | "wheel" | "oracle";
   timestamp: number;
 }
 
@@ -21,12 +23,22 @@ export interface FortunaCloudStats {
   offeringsSent: number;
   history: FortunaHistoryEntry[];
   unlockedAchievements: string[];
+  unlockedWheelPhrases: string[];
+  unlockedOraclePhrases: string[];
 }
 
 interface FortunaProgressStore extends State, FortunaCloudStats {
   soundEnabled: boolean;
   hasSyncedWallet: boolean;
-  recordCast: (result: { isWin: boolean; isGolden: boolean }) => void;
+  recordCast: (result: {
+    isWin: boolean;
+    isGolden: boolean;
+    mode?: "coin" | "wheel" | "oracle";
+    wheelTierId?: WheelTierId;
+    wheelPhrase?: string;
+    oracleTierId?: OracleTierId;
+    oraclePhrase?: string;
+  }) => void;
   recordOffering: () => void;
   setSoundEnabled: (enabled: boolean) => void;
   hydrateFromCloud: (stats: FortunaCloudStats) => void;
@@ -67,10 +79,12 @@ const useFortunaProgressStore = create<FortunaProgressStore>(
         offeringsSent: 0,
         history: [],
         unlockedAchievements: [],
+        unlockedWheelPhrases: [],
+        unlockedOraclePhrases: [],
         soundEnabled: true,
         hasSyncedWallet: false,
 
-        recordCast: ({ isWin, isGolden }) => {
+        recordCast: ({ isWin, isGolden, mode = "coin", wheelTierId, wheelPhrase, oracleTierId, oraclePhrase }) => {
           const state = get();
           const today = getLocalDateKey();
           const yesterday = getPreviousDateKey(today);
@@ -88,11 +102,22 @@ const useFortunaProgressStore = create<FortunaProgressStore>(
           if (isWin) xpGain += XP_BONUS_WIN;
           if (isGolden) xpGain += XP_BONUS_GOLDEN;
 
-          const result: FortunaHistoryEntry["result"] = isGolden
-            ? "golden"
-            : isWin
-            ? "heads"
-            : "tails";
+          const result: FortunaHistoryEntry["result"] =
+            mode === "wheel" ? "wheel" : mode === "oracle" ? "oracle" : isGolden ? "golden" : isWin ? "heads" : "tails";
+
+          const unlockedWheelPhrases =
+            wheelTierId && wheelPhrase
+              ? Array.from(
+                  new Set([...state.unlockedWheelPhrases, wheelPhraseKey(wheelTierId, wheelPhrase)])
+                )
+              : state.unlockedWheelPhrases;
+
+          const unlockedOraclePhrases =
+            oracleTierId && oraclePhrase
+              ? Array.from(
+                  new Set([...state.unlockedOraclePhrases, oraclePhraseKey(oracleTierId, oraclePhrase)])
+                )
+              : state.unlockedOraclePhrases;
 
           set({
             streakCount,
@@ -103,6 +128,8 @@ const useFortunaProgressStore = create<FortunaProgressStore>(
             totalWins: state.totalWins + (isWin ? 1 : 0),
             totalGoldens: state.totalGoldens + (isGolden ? 1 : 0),
             history: [{ result, timestamp: Date.now() }, ...state.history].slice(0, 5),
+            unlockedWheelPhrases,
+            unlockedOraclePhrases,
           });
 
           unlockAchievements();

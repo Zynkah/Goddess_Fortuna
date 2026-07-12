@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
-import NetworkSwitcher from './NetworkSwitcher'
-import { useAutoConnect } from '../../contexts/AutoConnectProvider'
 import useFortunaProgressStore from '../../stores/useFortunaProgressStore'
-import { StatsModal } from '../../views/fortune/StatsModal'
-import { HowItWorksModal } from '../../views/fortune/HowItWorksModal'
+import { StatsModal } from '../Modals/StatsModal'
+import { HowItWorksModal } from '../Modals/HowItWorksModal'
+import { AchievementsModal } from '../Modals/AchievementsModal'
+import useEscapeKey from '../../hooks/useEscapeKey'
 import { APPBAR_ICON_BUTTON_CLASS, APPBAR_PANEL_CLASS } from './uiTokens'
 
 const MENU_ROW_CLASS =
@@ -14,9 +14,11 @@ export const AppBarMenu = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [isStatsOpen, setIsStatsOpen] = useState(false)
   const [isHowItWorksOpen, setIsHowItWorksOpen] = useState(false)
-  const { autoConnect, setAutoConnect } = useAutoConnect()
+  const [isAchievementsOpen, setIsAchievementsOpen] = useState(false)
   const { soundEnabled, setSoundEnabled } = useFortunaProgressStore()
   const containerRef = useRef<HTMLDivElement>(null)
+
+  useEscapeKey(() => setIsOpen(false), isOpen)
 
   useEffect(() => {
     if (!isOpen) {
@@ -29,18 +31,10 @@ export const AppBarMenu = () => {
       }
     }
 
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        setIsOpen(false)
-      }
-    }
-
     document.addEventListener('mousedown', handlePointerDown)
-    window.addEventListener('keydown', handleEscape)
 
     return () => {
       document.removeEventListener('mousedown', handlePointerDown)
-      window.removeEventListener('keydown', handleEscape)
     }
   }, [isOpen])
 
@@ -66,19 +60,7 @@ export const AppBarMenu = () => {
         }`}
       >
         <div className='flex flex-col gap-3'>
-          <label className='flex cursor-pointer items-center justify-between gap-3 text-sm text-white/90'>
-            <span>Autoconnect</span>
-            <span className='relative inline-flex h-6 w-11 items-center rounded-full bg-white/15 p-0.5'>
-              <input
-                type='checkbox'
-                checked={autoConnect}
-                onChange={e => setAutoConnect(e.target.checked)}
-                className='peer sr-only'
-              />
-              <span className='h-5 w-5 rounded-full bg-white transition-transform duration-150 peer-checked:translate-x-5 peer-checked:bg-[var(--purple)]'></span>
-            </span>
-          </label>
-          <label className='flex cursor-pointer items-center justify-between gap-3 text-sm text-white/90'>
+          <label className='flex cursor-pointer items-center justify-between gap-3 rounded-md px-2 py-2 text-sm text-white/90'>
             <span>Sound effects</span>
             <span className='relative inline-flex h-6 w-11 items-center rounded-full bg-white/15 p-0.5'>
               <input
@@ -87,12 +69,11 @@ export const AppBarMenu = () => {
                 onChange={e => setSoundEnabled(e.target.checked)}
                 className='peer sr-only'
               />
-              <span className='h-5 w-5 rounded-full bg-white transition-transform duration-150 peer-checked:translate-x-5 peer-checked:bg-[var(--purple)]'></span>
+              <span className='h-5 w-5 rounded-full bg-white transition-transform duration-150 peer-checked:translate-x-5 peer-checked:bg-fortuna-gold'></span>
             </span>
           </label>
-          <NetworkSwitcher />
 
-          <div className='mt-1 flex flex-col gap-1 border-t border-white/10 pt-3'>
+          <div className='flex flex-col gap-1'>
             <button
               type='button'
               role='menuitem'
@@ -102,7 +83,7 @@ export const AppBarMenu = () => {
               }}
               className={MENU_ROW_CLASS}
             >
-              <span>Stats</span>
+              <span>Your Stats</span>
             </button>
             <button
               type='button'
@@ -115,12 +96,24 @@ export const AppBarMenu = () => {
             >
               <span>How it works</span>
             </button>
+            <button
+              type='button'
+              role='menuitem'
+              onClick={() => {
+                setIsOpen(false)
+                setIsAchievementsOpen(true)
+              }}
+              className={MENU_ROW_CLASS}
+            >
+              <span>Achievements</span>
+            </button>
           </div>
         </div>
       </div>
 
       <StatsModal isOpen={isStatsOpen} onClose={() => setIsStatsOpen(false)} />
       <HowItWorksModal isOpen={isHowItWorksOpen} onClose={() => setIsHowItWorksOpen(false)} />
+      <AchievementsModal isOpen={isAchievementsOpen} onClose={() => setIsAchievementsOpen(false)} />
     </div>
   )
 }

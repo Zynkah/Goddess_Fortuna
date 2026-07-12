@@ -155,3 +155,11 @@
     transform: translate(-50%, -50%) rotate(var(--angle, 0deg)) translate(var(--distance, 60px)) scale(0.3);
   }
 }
+
+.fortuna-wheel {
+  transition: none;
+}
+
+.fortuna-wheel--spinning {
+  transition: transform 2.2s cubic-bezier(0.15, 0.8, 0.25, 1);
+}

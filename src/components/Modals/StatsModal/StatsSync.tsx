@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useWallet } from "@solana/wallet-adapter-react";
-import useFortunaProgressStore, { FortunaCloudStats } from "../stores/useFortunaProgressStore";
-import { fetchCloudStats, pushCloudStats } from "../utils/statsApi";
+import useFortunaProgressStore, { FortunaCloudStats } from "../../../stores/useFortunaProgressStore";
+import { fetchCloudStats, pushCloudStats } from "../../../utils/statsApi";
 
 const SYNC_DEBOUNCE_MS = 1500;
 
@@ -17,6 +17,8 @@ function extractCloudStats(state: ReturnType<typeof useFortunaProgressStore.getS
     offeringsSent: state.offeringsSent,
     history: state.history,
     unlockedAchievements: state.unlockedAchievements,
+    unlockedWheelPhrases: state.unlockedWheelPhrases,
+    unlockedOraclePhrases: state.unlockedOraclePhrases,
   };
 }
 

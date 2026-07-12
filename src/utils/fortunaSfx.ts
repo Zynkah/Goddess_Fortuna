@@ -97,3 +97,33 @@ export function playGoldenSound() {
     });
   });
 }
+
+export function playWheelTickSound() {
+  withSound((ctx) => {
+    const now = ctx.currentTime;
+    // A decelerating run of clicks, like a wheel of fortune ticker slowing to a stop.
+    const gaps = [0, 0.09, 0.19, 0.31, 0.46, 0.64, 0.86, 1.12];
+    gaps.forEach((offset) => {
+      playTone(ctx, {
+        frequency: 1200,
+        endFrequency: 900,
+        startTime: now + offset,
+        duration: 0.04,
+        peakGain: 0.12,
+        type: "square",
+      });
+    });
+  });
+}
+
+export function playOracleChimeSound() {
+  withSound((ctx) => {
+    const now = ctx.currentTime;
+    const notes = [523, 784];
+    notes.forEach((frequency, i) => {
+      const startTime = now + i * 0.35;
+      playTone(ctx, { frequency, startTime, duration: 0.9, peakGain: 0.16 });
+      playTone(ctx, { frequency: frequency * 1.5, startTime: startTime + 0.05, duration: 0.8, peakGain: 0.08 });
+    });
+  });
+}
