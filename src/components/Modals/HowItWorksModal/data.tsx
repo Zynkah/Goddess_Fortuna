@@ -13,11 +13,11 @@ export const MODE_MECHANICS = [
   {
     title: "The Wheel",
     description:
-      "Fortune in eight faces, no question needed. Spin to land on one of eight fortunes, from Great Fortune down to Fate Changes — four favourable, four not. Land on Great Fortune for a rare shot at Golden Fortune.",
+      "Fortune in six faces, no question needed. Spin to land on Great Fortune, Favorable, Twist of Fate, Uncertain, Delay, or Misfortune. Land on Great Fortune for a rare shot at Divine Favor.",
   },
   {
     title: "The Oracle",
     description:
-      "A cryptic word of counsel, no question needed. The Oracle offers a poetic answer paired with a fortune rating of one to five stars — four stars or more means fortune favours you, and a rare five-star reading can turn Golden.",
+      "Not a yes or no, but a word of wisdom to interpret yourself — no question needed. Each reading is its own cryptic line, from blessed omens to quiet warnings, with a very rare Divine Revelation among them.",
   },
 ];

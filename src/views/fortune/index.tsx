@@ -80,6 +80,9 @@ export const FortuneView: FC = () => {
                     ...(castDetail.mode === "wheel"
                       ? { wheelTierId: castDetail.tierId, wheelPhrase: castDetail.phrase }
                       : {}),
+                    ...(castDetail.mode === "oracle"
+                      ? { oracleTierId: castDetail.tierId, oraclePhrase: castDetail.phrase }
+                      : {}),
                   });
                   setStep(2);
                 }}

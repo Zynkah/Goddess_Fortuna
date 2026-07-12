@@ -15,7 +15,6 @@ import {
 } from "../../../styles/buttonStyles";
 import { CoinParticleBurst } from "../CoinParticleBurst";
 import { FortuneWheel } from "../FortuneWheel";
-import { StarRating } from "../StarRating";
 import { playGoldenSound, playWinSound } from "../../../utils/fortunaSfx";
 import useFortunaProgressStore from "../../../stores/useFortunaProgressStore";
 import { CastDetail } from "./CastStep";
@@ -157,7 +156,7 @@ export const RevealStep = ({ isWin, isGolden, detail, onReset }: RevealStepProps
         </div>
       )}
 
-      {isWin && isGolden && (
+      {isWin && isGolden && detail.mode !== "oracle" && (
         <div className="fortuna-reveal-up-1 mb-2">
           <div className="font-cinzel text-sm tracking-[3px] text-fortuna-gold-bright">
             GOLDEN FORTUNE
@@ -227,8 +226,8 @@ export const RevealStep = ({ isWin, isGolden, detail, onReset }: RevealStepProps
             "{detail.phrase}"
           </div>
           <div className="fortuna-reveal-up-2 mx-auto my-6 h-px w-[60px] bg-[rgba(201,162,39,0.4)]" />
-          <div className="fortuna-reveal-up-3">
-            <StarRating rating={detail.rating} />
+          <div className="fortuna-reveal-up-3 font-cinzel text-[10px] uppercase tracking-[2px] text-fortuna-gold-faint">
+            Interpret this as you will
           </div>
         </div>
       )}

@@ -18,6 +18,7 @@ function extractCloudStats(state: ReturnType<typeof useFortunaProgressStore.getS
     history: state.history,
     unlockedAchievements: state.unlockedAchievements,
     unlockedWheelPhrases: state.unlockedWheelPhrases,
+    unlockedOraclePhrases: state.unlockedOraclePhrases,
   };
 }
 

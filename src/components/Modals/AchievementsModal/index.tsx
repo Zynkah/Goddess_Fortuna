@@ -1,6 +1,7 @@
 import { FortunaModal } from "../../Modal";
 import { Milestones } from "./Milestones";
 import { WheelCodex } from "./WheelCodex";
+import { OracleCodex } from "./OracleCodex";
 
 interface AchievementsModalProps {
   isOpen: boolean;
@@ -13,6 +14,9 @@ export const AchievementsModal = ({ isOpen, onClose }: AchievementsModalProps) =
       <Milestones />
       <div className="border-t border-[rgba(201,162,39,0.2)] pt-6">
         <WheelCodex />
+      </div>
+      <div className="border-t border-[rgba(201,162,39,0.2)] pt-6">
+        <OracleCodex />
       </div>
     </div>
   </FortunaModal>

@@ -3,7 +3,6 @@ import useGoddessQuestionStore from "../../../stores/useGoddessQuestionStore";
 import { FORTUNA_GHOST_BUTTON_CLASS, FORTUNA_PRIMARY_BUTTON_CLASS } from "../../../styles/buttonStyles";
 import { playCastSound, playWheelTickSound, playOracleChimeSound } from "../../../utils/fortunaSfx";
 import { FortuneWheel } from "../FortuneWheel";
-import { pickOracleOutcome, OraclePhrase } from "../../../utils/fortunaOracle";
 import { pickWheelSegmentIndex } from "../FortuneWheel/PickWheelSegmentIndex";
 import { getWheelTargetRotation } from "../FortuneWheel/GetWheelTargetRotation";
 import {
@@ -13,6 +12,13 @@ import {
   pickWheelPhrase,
   WheelTierId,
 } from "../../../utils/fortunaWheelTiers";
+import {
+  DIVINE_REVELATION_TIER,
+  ORACLE_DIVINE_REVELATION_CHANCE,
+  OracleTierId,
+  pickOraclePhrase,
+  pickOracleTier,
+} from "../../../utils/fortunaOracleTiers";
 
 const GOLDEN_FORTUNE_CHANCE = 0.08;
 const WHEEL_SPIN_MS = 2200;
@@ -21,7 +27,7 @@ const ORACLE_CONSULT_MS = 1400;
 export type CastDetail =
   | { mode: "coin" }
   | { mode: "wheel"; segment: string; tierId: WheelTierId; phrase: string }
-  | { mode: "oracle"; phrase: string; rating: OraclePhrase["rating"] };
+  | { mode: "oracle"; tierId: OracleTierId; phrase: string };
 
 interface CastStepProps {
   onBack: () => void;
@@ -60,12 +66,16 @@ export const CastStep = ({ onBack, onCastComplete }: CastStepProps) => {
   };
 
   const handleConsultOracle = () => {
-    const outcome = pickOracleOutcome();
+    const tier = pickOracleTier();
     setTimeout(() => {
       playOracleChimeSound();
-      const isWin = outcome.rating >= 4;
-      const isGolden = outcome.rating === 5 && Math.random() < GOLDEN_FORTUNE_CHANCE;
-      onCastComplete(isWin, isGolden, { mode: "oracle", phrase: outcome.text, rating: outcome.rating });
+      const isGolden = tier.id === "blessed-omens" && Math.random() < ORACLE_DIVINE_REVELATION_CHANCE;
+      const resolvedTier = isGolden ? DIVINE_REVELATION_TIER : tier;
+      onCastComplete(tier.isWin, isGolden, {
+        mode: "oracle",
+        tierId: resolvedTier.id,
+        phrase: pickOraclePhrase(resolvedTier),
+      });
     }, ORACLE_CONSULT_MS);
   };
 
