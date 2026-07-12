@@ -2,18 +2,25 @@ import { useState } from "react";
 import useGoddessQuestionStore from "../../../stores/useGoddessQuestionStore";
 import fortunaStatue from "../../../assets/fortuna.png";
 import { FORTUNA_PRIMARY_BUTTON_CLASS } from "../../../styles/buttonStyles";
-import { ModeSelectDropdown } from "../../../components/Dropdowns/ModeSelectDropdown";
+import { ModeSelectButtons } from "../../../components/ModeSelect/ModeSelectButtons";
 
 interface AskStepProps {
   onProceed: () => void;
 }
 
+const HEADING_BY_MODE = {
+  coin: "Ask Fortuna a question",
+  wheel: "Spin to see what she reveals",
+  oracle: "Seek a word of counsel",
+};
+
 export const AskStep = ({ onProceed }: AskStepProps) => {
-  const { question, setQuestion } = useGoddessQuestionStore();
+  const { question, setQuestion, mode } = useGoddessQuestionStore();
   const [error, setError] = useState(false);
+  const asksQuestion = mode === "coin";
 
   const handleProceed = () => {
-    if (!question.trim()) {
+    if (asksQuestion && !question.trim()) {
       setError(true);
       return;
     }
@@ -26,47 +33,45 @@ export const AskStep = ({ onProceed }: AskStepProps) => {
       <div className="font-cinzel text-[10px] uppercase tracking-[2px] text-fortuna-gold-dim">
         How shall Fortuna answer?
       </div>
-      <ModeSelectDropdown />
+      <ModeSelectButtons />
 
       <div className="font-cinzel mt-9 text-[10px] uppercase tracking-[4px] text-fortuna-gold-dim">
-        Ask Fortuna a question
+        {HEADING_BY_MODE[mode]}
       </div>
       <div className="mx-auto mt-4 h-px w-10 bg-[rgba(201,162,39,0.5)]" />
 
-      <div
-        className="relative mx-auto mt-8 h-[min(340px,90vw)] w-[min(240px,66vw)] overflow-hidden rounded-t-[110px] rounded-b-md border border-[rgba(201,162,39,0.4)]"
-        style={{
-          background: "radial-gradient(circle at 50% 32%, #4a3c24 0%, #241d10 55%, var(--fortuna-bg-raised) 100%)",
-        }}
-      >
+      <div className="relative mx-auto mt-8 h-[min(340px,90vw)] w-[min(240px,66vw)] overflow-hidden rounded-t-[110px] rounded-b-md border border-[rgba(201,162,39,0.4)]">
         <img
           src={fortunaStatue}
           alt="Fortuna, goddess of fortune"
-          className="absolute inset-0 h-full w-full object-contain"
-          style={{ mixBlendMode: "multiply", filter: "brightness(1.4) contrast(1.05)" }}
+          className="absolute inset-0 h-full w-full object-cover"
         />
       </div>
       <div className="mt-3 font-cinzel text-[9px] uppercase tracking-[2px] text-fortuna-gold-faint">
         Goddess Fortuna
       </div>
 
-      <input
-        value={question}
-        onChange={(e) => {
-          setQuestion(e.target.value);
-          if (error) setError(false);
-        }}
-        placeholder="Will I find what I seek?"
-        required
-        aria-invalid={error}
-        className={`fortuna-question-input mt-8 w-full border-0 border-b bg-transparent px-1 py-3 text-center font-garamond text-2xl italic text-fortuna-gold-light ${
-          error ? "border-red-500" : "border-[rgba(201,162,39,0.3)]"
-        }`}
-      />
-      {error && (
-        <div className="mt-2 font-garamond text-sm text-red-500">
-          Please ask Fortuna a question before proceeding.
-        </div>
+      {asksQuestion && (
+        <>
+          <input
+            value={question}
+            onChange={(e) => {
+              setQuestion(e.target.value);
+              if (error) setError(false);
+            }}
+            placeholder="Will I find what I seek?"
+            required
+            aria-invalid={error}
+            className={`fortuna-question-input mt-8 w-full border-0 border-b bg-transparent px-1 py-3 text-center font-garamond text-2xl italic text-fortuna-gold-light ${
+              error ? "border-red-500" : "border-[rgba(201,162,39,0.3)]"
+            }`}
+          />
+          {error && (
+            <div className="mt-2 font-garamond text-sm text-red-500">
+              Please ask Fortuna a question before proceeding.
+            </div>
+          )}
+        </>
       )}
 
       <button

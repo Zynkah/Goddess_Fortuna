@@ -77,13 +77,17 @@ export const CastStep = ({ onBack, onCastComplete }: CastStepProps) => {
 
   return (
     <div className="p-[clamp(30px,6vw,44px)] text-center">
-      <div className="font-cinzel text-[10px] uppercase tracking-[4px] text-fortuna-gold-dim">
-        Your Question
-      </div>
-      <div className="mx-auto mb-2 mt-4 h-px w-10 bg-[rgba(201,162,39,0.5)]" />
-      <div className="font-garamond text-xl italic text-fortuna-gold-dimmer">
-        "{question.trim() ? question : "Will I find what I seek?"}"
-      </div>
+      {mode === "coin" && (
+        <>
+          <div className="font-cinzel text-[10px] uppercase tracking-[4px] text-fortuna-gold-dim">
+            Your Question
+          </div>
+          <div className="mx-auto mb-2 mt-4 h-px w-10 bg-[rgba(201,162,39,0.5)]" />
+          <div className="font-garamond text-xl italic text-fortuna-gold-dimmer">
+            "{question.trim() ? question : "Will I find what I seek?"}"
+          </div>
+        </>
+      )}
 
       {mode === "wheel" && (
         <div className="my-8 flex justify-center">
@@ -106,7 +110,7 @@ export const CastStep = ({ onBack, onCastComplete }: CastStepProps) => {
         onClick={onBack}
         className={`mt-4 block w-full text-center ${FORTUNA_GHOST_BUTTON_CLASS}`}
       >
-        Change question
+        {mode === "coin" ? "Change question" : "Choose again"}
       </button>
     </div>
   );
