@@ -18,6 +18,19 @@ const AchievementsModal = lazy(() =>
 const MENU_ROW_CLASS =
   'flex w-full cursor-pointer items-center justify-between rounded-md px-2 py-2 text-left text-sm text-white/90 transition-colors duration-150 hover:bg-white/10'
 
+// Shown while a modal's chunk is still downloading — same backdrop as
+// FortunaModal so there's no flicker once the real modal takes over.
+const ModalLoadingFallback = () => (
+  <div
+    role='status'
+    aria-live='polite'
+    className='fixed inset-0 z-[100] flex items-center justify-center bg-black/70 px-5 backdrop-blur-sm'
+  >
+    <div className='h-8 w-8 animate-spin rounded-full border-2 border-fortuna-gold-dim border-t-fortuna-gold' />
+    <span className='sr-only'>Loading…</span>
+  </div>
+)
+
 export const AppBarMenu = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [isStatsOpen, setIsStatsOpen] = useState(false)
@@ -119,7 +132,7 @@ export const AppBarMenu = () => {
         </div>
       </div>
 
-      <Suspense fallback={null}>
+      <Suspense fallback={<ModalLoadingFallback />}>
         {isStatsOpen && <StatsModal isOpen={isStatsOpen} onClose={() => setIsStatsOpen(false)} />}
         {isHowItWorksOpen && (
           <HowItWorksModal isOpen={isHowItWorksOpen} onClose={() => setIsHowItWorksOpen(false)} />

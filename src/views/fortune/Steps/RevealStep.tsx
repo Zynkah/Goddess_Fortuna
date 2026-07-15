@@ -4,7 +4,11 @@ import { useWallet } from "@solana/wallet-adapter-react";
 import { useWalletModal } from "@solana/wallet-adapter-react-ui";
 import { sendUsdcTip } from "../../../utils/sendUsdcTip";
 import { notify } from "../../../utils/notifications";
-import { CLUSTER_URL, SOLANA_COMMITMENT, TIP_DESTINATION_WALLET } from "../../../constants";
+import {
+  CLUSTER_URL,
+  SOLANA_COMMITMENT,
+  TIP_DESTINATION_WALLET,
+} from "../../../constants";
 import headsCoin from "../../../assets/Stater_Epeiros_Artermis_Heads.png";
 import tailsCoin from "../../../assets/Stater_Epeiros_Artermis_Tails.png";
 import {
@@ -44,7 +48,12 @@ const IDLE_TEXT_BY_MODE: Record<CastDetail["mode"], string> = {
   oracle: "Fortuna consults the mists…",
 };
 
-export const RevealStep = ({ isWin, isGolden, detail, onReset }: RevealStepProps) => {
+export const RevealStep = ({
+  isWin,
+  isGolden,
+  detail,
+  onReset,
+}: RevealStepProps) => {
   const isResolved = isWin !== null;
 
   useEffect(() => {
@@ -56,14 +65,16 @@ export const RevealStep = ({ isWin, isGolden, detail, onReset }: RevealStepProps
   // connection regardless of the app's devnet/testnet network switcher.
   const connection = useMemo(
     () => new Connection(CLUSTER_URL, SOLANA_COMMITMENT),
-    []
+    [],
   );
   const wallet = useWallet();
   const { setVisible: setWalletModalVisible } = useWalletModal();
   const [tipAmount, setTipAmount] = useState<number>(1);
   const [isCustomTip, setIsCustomTip] = useState(false);
   const [customTipInput, setCustomTipInput] = useState("");
-  const [tipPhase, setTipPhase] = useState<"idle" | "sending" | "confirmed" | "sent">("idle");
+  const [tipPhase, setTipPhase] = useState<
+    "idle" | "sending" | "confirmed" | "sent"
+  >("idle");
 
   const effectiveTipAmount = isCustomTip ? Number(customTipInput) : tipAmount;
   const isTipAmountValid = effectiveTipAmount > 0;
@@ -72,7 +83,11 @@ export const RevealStep = ({ isWin, isGolden, detail, onReset }: RevealStepProps
     if (!wallet.connected || !isTipAmountValid || tipPhase !== "idle") return;
     setTipPhase("sending");
     try {
-      const signature = await sendUsdcTip(connection, wallet, effectiveTipAmount);
+      const signature = await sendUsdcTip(
+        connection,
+        wallet,
+        effectiveTipAmount,
+      );
       notify({
         type: "success",
         message: "Offering sent",
@@ -94,13 +109,16 @@ export const RevealStep = ({ isWin, isGolden, detail, onReset }: RevealStepProps
   };
 
   const wheelSegmentIndex =
-    detail.mode === "wheel" ? WHEEL_SEGMENTS.findIndex((s) => s.label === detail.segment) : -1;
+    detail.mode === "wheel"
+      ? WHEEL_SEGMENTS.findIndex((s) => s.label === detail.segment)
+      : -1;
 
   return (
     <div
       className="flex min-h-[560px] flex-col items-center justify-center p-[clamp(30px,6vw,44px)] text-center"
       style={{
-        background: "radial-gradient(90% 60% at 50% 42%, #1a1509 0%, transparent 70%)",
+        background:
+          "radial-gradient(90% 60% at 50% 42%, #1a1509 0%, transparent 70%)",
       }}
     >
       <div className="font-cinzel text-[10px] uppercase tracking-[4px] text-fortuna-gold-dim">
@@ -108,12 +126,17 @@ export const RevealStep = ({ isWin, isGolden, detail, onReset }: RevealStepProps
       </div>
 
       {detail.mode === "coin" && (
-        <div className="relative my-8 h-[132px] w-[132px]" style={{ perspective: "800px" }}>
+        <div
+          className="relative my-8 h-[132px] w-[132px]"
+          style={{ perspective: "800px" }}
+        >
           <div
             className="absolute inset-0 z-0 rounded-full"
             style={{ boxShadow: "0 0 44px rgba(230,195,77,0.4)" }}
           />
-          {isGolden && isWin && <div className="fortuna-coin--golden absolute -inset-1 z-20" />}
+          {isGolden && isWin && (
+            <div className="fortuna-coin--golden absolute -inset-1 z-20" />
+          )}
           <img
             src={isResolved && !isWin ? tailsCoin : headsCoin}
             alt={isResolved ? (isWin ? "Heads" : "Tails") : "Fortuna's coin"}
@@ -128,7 +151,11 @@ export const RevealStep = ({ isWin, isGolden, detail, onReset }: RevealStepProps
       {detail.mode === "wheel" && (
         <div className="relative my-8 flex h-[160px] w-[160px] items-center justify-center">
           <FortuneWheel
-            rotation={wheelSegmentIndex >= 0 ? getWheelTargetRotation(wheelSegmentIndex, 0) : 0}
+            rotation={
+              wheelSegmentIndex >= 0
+                ? getWheelTargetRotation(wheelSegmentIndex, 0)
+                : 0
+            }
             spinning={false}
           />
           {isWin && <CoinParticleBurst golden={isGolden} />}
@@ -140,12 +167,14 @@ export const RevealStep = ({ isWin, isGolden, detail, onReset }: RevealStepProps
           <div
             className={`absolute inset-0 rounded-full ${isGolden && isWin ? "fortuna-coin--golden" : ""}`}
             style={{
-              background: "radial-gradient(circle at 35% 30%, #4a3c24, #241d10 70%)",
+              background:
+                "radial-gradient(circle at 35% 30%, #4a3c24, #241d10 70%)",
               boxShadow: "0 0 44px rgba(230,195,77,0.35)",
             }}
           />
           <div className="absolute inset-0 flex scale-110 items-center justify-center overflow-hidden rounded-full text-[108px] leading-none">
-            {ALL_ORACLE_TIERS.find((t) => t.id === detail.tierId)?.emoji}
+            {ALL_ORACLE_TIERS.find((t) => t.id === detail.tierId)?.emoji ??
+              "🔮"}{" "}
           </div>
           {isWin && <CoinParticleBurst golden={isGolden} />}
         </div>
@@ -171,7 +200,8 @@ export const RevealStep = ({ isWin, isGolden, detail, onReset }: RevealStepProps
       {isResolved && detail.mode === "coin" && isWin && (
         <div>
           <div className="fortuna-reveal-up-1 font-cinzel text-2xl leading-snug tracking-[3px] text-fortuna-gold-light">
-            HEADS<br />
+            HEADS
+            <br />
             FORTUNE FAVOURS YOU
           </div>
           <div className="fortuna-reveal-up-2 mx-auto my-6 h-px w-[60px] bg-[rgba(201,162,39,0.5)]" />
@@ -184,7 +214,8 @@ export const RevealStep = ({ isWin, isGolden, detail, onReset }: RevealStepProps
       {isResolved && detail.mode === "coin" && !isWin && (
         <div>
           <div className="fortuna-reveal-up-1 font-cinzel text-2xl leading-snug tracking-[3px] text-[#9a8a5e]">
-            TAILS<br />
+            TAILS
+            <br />
             FORTUNE TURNS AWAY
           </div>
           <div className="fortuna-reveal-up-2 mx-auto my-6 h-px w-[60px] bg-[rgba(201,162,39,0.3)]" />
@@ -202,7 +233,9 @@ export const RevealStep = ({ isWin, isGolden, detail, onReset }: RevealStepProps
             }`}
           >
             {(() => {
-              const landedTier = ALL_WHEEL_TIERS.find((t) => t.id === detail.tierId);
+              const landedTier = ALL_WHEEL_TIERS.find(
+                (t) => t.id === detail.tierId,
+              );
               return `${landedTier?.emoji ?? ""} ${(landedTier?.label ?? detail.segment).toUpperCase()}`;
             })()}
           </div>
@@ -260,7 +293,9 @@ export const RevealStep = ({ isWin, isGolden, detail, onReset }: RevealStepProps
               type="button"
               onClick={() => setIsCustomTip(true)}
               className={`${FORTUNA_PILL_BUTTON_CLASS} border-dashed ${
-                isCustomTip ? FORTUNA_PILL_BUTTON_ACTIVE_CLASS : FORTUNA_PILL_BUTTON_INACTIVE_CLASS
+                isCustomTip
+                  ? FORTUNA_PILL_BUTTON_ACTIVE_CLASS
+                  : FORTUNA_PILL_BUTTON_INACTIVE_CLASS
               }`}
             >
               CUSTOM
@@ -296,12 +331,12 @@ export const RevealStep = ({ isWin, isGolden, detail, onReset }: RevealStepProps
               {tipPhase === "sending"
                 ? "SENDING…"
                 : tipPhase === "confirmed"
-                ? "CONFIRMED"
-                : tipPhase === "sent"
-                ? "OFFERING SENT"
-                : isTipAmountValid
-                ? `SEND ${effectiveTipAmount} USDC`
-                : "ENTER AN AMOUNT"}
+                  ? "CONFIRMED"
+                  : tipPhase === "sent"
+                    ? "OFFERING SENT"
+                    : isTipAmountValid
+                      ? `SEND ${effectiveTipAmount} USDC`
+                      : "ENTER AN AMOUNT"}
             </button>
           ) : (
             <button
