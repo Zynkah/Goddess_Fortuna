@@ -21,6 +21,7 @@ import { CastDetail } from "./CastStep";
 import { WHEEL_SEGMENTS } from "../FortuneWheel/data";
 import { getWheelTargetRotation } from "../FortuneWheel/GetWheelTargetRotation";
 import { ALL_WHEEL_TIERS } from "../../../utils/fortunaWheelTiers";
+import { ALL_ORACLE_TIERS } from "../../../utils/fortunaOracleTiers";
 
 interface RevealStepProps {
   isWin: boolean | null;
@@ -143,8 +144,8 @@ export const RevealStep = ({ isWin, isGolden, detail, onReset }: RevealStepProps
               boxShadow: "0 0 44px rgba(230,195,77,0.35)",
             }}
           />
-          <div className="absolute inset-0 flex items-center justify-center font-cinzel text-xs uppercase tracking-[2px] text-fortuna-gold-bright">
-            Oracle
+          <div className="absolute inset-0 flex scale-110 items-center justify-center overflow-hidden rounded-full text-[108px] leading-none">
+            {ALL_ORACLE_TIERS.find((t) => t.id === detail.tierId)?.emoji}
           </div>
           {isWin && <CoinParticleBurst golden={isGolden} />}
         </div>

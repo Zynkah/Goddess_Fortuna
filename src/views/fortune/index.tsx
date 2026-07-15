@@ -40,7 +40,7 @@ export const FortuneView: FC = () => {
   return (
     <div className="fortuna-stage flex min-h-[calc(100vh-73px)] flex-col">
       <main className="flex flex-1 items-start justify-center px-5 pb-20 pt-[clamp(24px,5vw,56px)]">
-        <div className="w-full max-w-[480px]">
+        <div className="w-full max-w-[780px]">
           <div className="mb-8 flex items-center justify-center gap-4 font-cinzel text-[10px] uppercase tracking-[3px]">
             {steps.map(({ index, label }, i) => {
               const isCompleted = index < step;

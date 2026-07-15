@@ -1,11 +1,19 @@
-import { useEffect, useRef, useState } from 'react'
+import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import useFortunaProgressStore from '../../stores/useFortunaProgressStore'
-import { StatsModal } from '../Modals/StatsModal'
-import { HowItWorksModal } from '../Modals/HowItWorksModal'
-import { AchievementsModal } from '../Modals/AchievementsModal'
 import useEscapeKey from '../../hooks/useEscapeKey'
 import { APPBAR_ICON_BUTTON_CLASS, APPBAR_PANEL_CLASS } from './uiTokens'
+
+// Lazy-loaded: these modals (and the wheel/oracle phrase data the
+// Achievements modal pulls in) aren't needed until a user opens the
+// hamburger menu, so keep them out of the main bundle.
+const StatsModal = lazy(() => import('../Modals/StatsModal').then((m) => ({ default: m.StatsModal })))
+const HowItWorksModal = lazy(() =>
+  import('../Modals/HowItWorksModal').then((m) => ({ default: m.HowItWorksModal }))
+)
+const AchievementsModal = lazy(() =>
+  import('../Modals/AchievementsModal').then((m) => ({ default: m.AchievementsModal }))
+)
 
 const MENU_ROW_CLASS =
   'flex w-full cursor-pointer items-center justify-between rounded-md px-2 py-2 text-left text-sm text-white/90 transition-colors duration-150 hover:bg-white/10'
@@ -111,9 +119,15 @@ export const AppBarMenu = () => {
         </div>
       </div>
 
-      <StatsModal isOpen={isStatsOpen} onClose={() => setIsStatsOpen(false)} />
-      <HowItWorksModal isOpen={isHowItWorksOpen} onClose={() => setIsHowItWorksOpen(false)} />
-      <AchievementsModal isOpen={isAchievementsOpen} onClose={() => setIsAchievementsOpen(false)} />
+      <Suspense fallback={null}>
+        {isStatsOpen && <StatsModal isOpen={isStatsOpen} onClose={() => setIsStatsOpen(false)} />}
+        {isHowItWorksOpen && (
+          <HowItWorksModal isOpen={isHowItWorksOpen} onClose={() => setIsHowItWorksOpen(false)} />
+        )}
+        {isAchievementsOpen && (
+          <AchievementsModal isOpen={isAchievementsOpen} onClose={() => setIsAchievementsOpen(false)} />
+        )}
+      </Suspense>
     </div>
   )
 }
